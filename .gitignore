@@ -9,6 +9,7 @@ Desktop.ini
 $RECYCLE.BIN/
 bin/
 obj/
+.vs/
 
 # Windows Installer files
 *.cab
