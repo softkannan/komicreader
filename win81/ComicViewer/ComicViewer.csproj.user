@@ -6,7 +6,9 @@
     <AppxBuildConfigurationSelection>neutral</AppxBuildConfigurationSelection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <UseSimulator>True</UseSimulator>
+    <UseSimulator>false</UseSimulator>
+    <RemoteDebugMachine>localhost</RemoteDebugMachine>
+    <RemoteDebugEnabled>true</RemoteDebugEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <DoNotLaunchApp>False</DoNotLaunchApp>
