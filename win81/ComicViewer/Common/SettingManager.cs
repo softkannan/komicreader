@@ -9,6 +9,10 @@ namespace ComicViewer
 {
     public class SettingManager
     {
+        private SettingManager()
+        {
+
+        }
         public static ApplicationDataContainer Inst
         {
             get

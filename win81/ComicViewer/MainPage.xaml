@@ -17,8 +17,8 @@
             <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal" VirtualizationMode="Standard" CleanUpVirtualizedItemEvent="pageFlipView_CleanUpVirtualizedItemEvent" />
         </ItemsPanelTemplate>
 
-        <ItemsPanelTemplate x:Key="ScrollViewPanelTemplate">
-            <VirtualizingStackPanel HorizontalAlignment="Center" Orientation="Vertical" VirtualizationMode="Standard"  CleanUpVirtualizedItemEvent="scrollView_CleanUpVirtualizedItemEvent"/>
+        <ItemsPanelTemplate x:Key="ContinuousViewPanelTemplate">
+            <VirtualizingStackPanel HorizontalAlignment="Center" Orientation="Vertical" VirtualizationMode="Standard"  CleanUpVirtualizedItemEvent="continuousView_CleanUpVirtualizedItemEvent"/>
         </ItemsPanelTemplate>
 
     </Page.Resources>
@@ -85,8 +85,8 @@
 
         <Grid x:Name="comicGrid" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Visibility="Collapsed" DoubleTapped="comicGrid_DoubleTapped" Tapped="comicGrid_Tapped" >
             <!--Continious view control layout-->
-            <local:ListViewEx x:Name="continuousView" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ScrollViewItemContainerStyle}" 
-                      ItemsPanel="{StaticResource ScrollViewPanelTemplate}" DataFetchSize="1" 
+            <local:ContiniousView x:Name="continuousView" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ScrollViewItemContainerStyle}" 
+                      ItemsPanel="{StaticResource ContinuousViewPanelTemplate}" DataFetchSize="1" 
                       ItemTemplate="{StaticResource ScrollViewItemTemplate}" Style="{StaticResource ScrollViewStyle}" 
                       HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
             <!--single page view control layout-->

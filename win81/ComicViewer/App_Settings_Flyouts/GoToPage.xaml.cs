@@ -29,7 +29,7 @@ namespace ComicViewer
             this.InitializeComponent();
         }
 
-        public Func<int,Task> GotoPage = null;
+        public Func<int, Task> GotoPage { get; set; } = null;
 
         int currentPage = 1;
         List<ComicImageViewModel> pages;
@@ -64,11 +64,11 @@ namespace ComicViewer
 
         }
 
-        public void SetPages(List<ComicImageViewModel> pages,List<int> bookmarks,int currentPage)
+        public void SetPages(List<ComicImageViewModel> argPages,List<int> argBookmarks,int argCurrentPage)
         {
-            this.pages = pages;
-            this.bookmarks = bookmarks;
-            this.currentPage = currentPage;
+            this.pages = argPages;
+            this.bookmarks = argBookmarks;
+            this.currentPage = argCurrentPage;
 
             UpdatePages();
         }
@@ -93,7 +93,7 @@ namespace ComicViewer
 
             if (GotoPage != null)
             {
-                var foolCompiler = GotoPage(tempImage.Page.PageNo);
+                GotoPage(tempImage.Page.PageNo);
             }
         }
 

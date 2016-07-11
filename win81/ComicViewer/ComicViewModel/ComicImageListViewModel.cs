@@ -9,7 +9,10 @@ using Windows.UI.Popups;
 
 namespace ComicViewer
 {
-    public class ComicImageFlipViewModel : IList, INotifyCollectionChanged
+    /// <summary>
+    /// View model used by scroll viewer or similar types of view
+    /// </summary>
+    public class ComicImageListViewModel : IList, INotifyCollectionChanged
     {
         //public async Task UpdateAttributes()
         //{
@@ -29,29 +32,43 @@ namespace ComicViewer
 
         private ComicImageViewModelList m_images;
 
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        /// <summary>
+        /// Data context proprty for scroll type viewer
+        /// </summary>
         public ComicImageViewModelList Source
         {
             get { return m_images; }
         }
-
-        public ComicImageFlipViewModel(ComicImageViewModelList images)
+        public ComicImageListViewModel(ComicImageViewModelList images)
         {
             this.m_images = images;
         }
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-
+        /// <summary>
+        /// check given value is present in the image list
+        /// </summary>
+        /// <param name="value">image</param>
+        /// <returns>returns the found position</returns>
         public int IndexOf(object value)
         {
             return m_images.IndexOf(value as ComicImageViewModel);
             //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns total number of images available in the comic book
+        /// </summary>
         public int Count
         {
             get { return m_images.Count; }
         }
 
+        /// <summary>
+        /// This method will be called by the any scroll viewer type views
+        /// </summary>
+        /// <param name="index">page index</param>
+        /// <returns>returns the image data</returns>
         public object this[int index]
         {
             get
@@ -59,9 +76,9 @@ namespace ComicViewer
 
                 var retVal = m_images[index];
 
-                if (!retVal.IsImagePopulated)
+                if (!retVal.Image.IsImagePopulated)
                 {
-                    BuildImageAsync(index, retVal as ComicImageViewModel);
+                    GetImageAtAsync(index, retVal as ComicImageViewModel);
                 }
 
                 return retVal;
@@ -71,12 +88,16 @@ namespace ComicViewer
                 throw new NotImplementedException();
             }
         }
-
-        async void BuildImageAsync(int index, ComicImageViewModel image)
+        /// <summary>
+        /// Resolves image data for given page number
+        /// </summary>
+        /// <param name="index">page number</param>
+        /// <param name="image">image object that needs to be resolved</param>
+        private async void GetImageAtAsync(int index, ComicImageViewModel image)
         {
             try
             {
-                await image.BuildImageAsync();
+                await image.GetImageAsync();
 
                 if (CollectionChanged != null)
                 {
@@ -105,12 +126,12 @@ namespace ComicViewer
 
         public bool IsFixedSize
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
 
         public int Add(object value)
@@ -145,12 +166,12 @@ namespace ComicViewer
 
         public bool IsSynchronized
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
 
         public object SyncRoot
         {
-            get { throw new NotImplementedException(); }
+            get { throw new NotSupportedException(); }
         }
 
         public IEnumerator GetEnumerator()

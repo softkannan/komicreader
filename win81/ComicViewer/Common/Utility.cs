@@ -1,4 +1,4 @@
-﻿using SharpCompress.Archive;
+﻿using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,6 +99,10 @@ namespace ComicViewer
 
         public static void Exec<TSource>(this IEnumerable<TSource> source, Action<TSource, int> predicate)
         {
+            if(source == null || predicate == null)
+            {
+                return;
+            }
             int count = 0;
             foreach (TSource item in source)
             {
@@ -110,6 +114,11 @@ namespace ComicViewer
 
         public static void Exec<TSource>(this IEnumerable<TSource> source, Action<TSource> predicate)
         {
+            if (source == null || predicate == null)
+            {
+                return;
+            }
+
             foreach (TSource item in source)
             {
                 predicate(item);
@@ -152,8 +161,13 @@ namespace ComicViewer
             return retVal.ToString().TrimEnd(',');
         }
 
-        public static bool IsImageFile(this IArchiveEntry entry)
+        public static bool IsImageFile(this IEntry entry)
         {
+            if(entry == null)
+            {
+                return false;
+            }
+
             switch (Path.GetExtension(entry.FilePath).ToLower())
             {
                 case ".jpeg":

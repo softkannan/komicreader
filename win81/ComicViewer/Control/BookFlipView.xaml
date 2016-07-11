@@ -63,7 +63,8 @@
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="3">
                             <Border.Resources>
                                 <ControlTemplate x:Key="HorizontalNextTemplate" TargetType="Button">
-                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" 
+                                            Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CommonStates">
                                                 <VisualState x:Name="Normal"/>
@@ -95,11 +96,13 @@
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Path x:Name="Arrow" Data="M4.12,0 L9.67,5.47 L4.12,10.94 L0,10.88 L5.56,5.47 L0,0.06 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="10.94" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="9.67"/>
+                                        <Path x:Name="Arrow" Data="M4.12,0 L9.67,5.47 L4.12,10.94 L0,10.88 L5.56,5.47 L0,0.06 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" 
+                                              HorizontalAlignment="Center" Height="10.94" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="9.67"/>
                                     </Border>
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="HorizontalPreviousTemplate" TargetType="Button">
-                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" 
+                                            Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CommonStates">
                                                 <VisualState x:Name="Normal"/>
@@ -131,11 +134,13 @@
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Path x:Name="Arrow" Data="M5.55,0 L9.67,0.06 L4.12,5.47 L9.67,10.88 L5.55,10.94 L0,5.48 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="10.94" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="9.67"/>
+                                        <Path x:Name="Arrow" Data="M5.55,0 L9.67,0.06 L4.12,5.47 L9.67,10.88 L5.55,10.94 L0,5.48 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" 
+                                              HorizontalAlignment="Center" Height="10.94" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="9.67"/>
                                     </Border>
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="VerticalNextTemplate" TargetType="Button">
-                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" 
+                                            Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CommonStates">
                                                 <VisualState x:Name="Normal"/>
@@ -167,11 +172,13 @@
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Path x:Name="Arrow" Data="M0.06,0 L5.47,5.56 L10.88,0 L10.94,4.12 L5.48,9.67 L0,4.12 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="9.67" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="10.94"/>
+                                        <Path x:Name="Arrow" Data="M0.06,0 L5.47,5.56 L10.88,0 L10.94,4.12 L5.48,9.67 L0,4.12 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" 
+                                              HorizontalAlignment="Center" Height="9.67" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="10.94"/>
                                     </Border>
                                 </ControlTemplate>
                                 <ControlTemplate x:Key="VerticalPreviousTemplate" TargetType="Button">
-                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                    <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" 
+                                            Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CommonStates">
                                                 <VisualState x:Name="Normal"/>
@@ -203,7 +210,8 @@
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Path x:Name="Arrow" Data="M5.63,0 L11.11,5.55 L11.05,9.67 L5.64,4.12 L0.23,9.67 L0.17,5.55 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="9.67" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="10.94"/>
+                                        <Path x:Name="Arrow" Data="M5.63,0 L11.11,5.55 L11.05,9.67 L5.64,4.12 L0.23,9.67 L0.17,5.55 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" 
+                                              HorizontalAlignment="Center" Height="9.67" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="10.94"/>
                                     </Border>
                                 </ControlTemplate>
                             </Border.Resources>
@@ -221,14 +229,19 @@
                                               VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled">
                                     <ItemsPresenter/>
                                 </ScrollViewer>
-                                <Button x:Name="PreviousButtonHorizontal" HorizontalAlignment="Left" Height="40" IsTabStop="False" Template="{StaticResource HorizontalPreviousTemplate}" VerticalAlignment="Center" Width="70"/>
-                                <Button x:Name="NextButtonHorizontal" HorizontalAlignment="Right" Height="40" IsTabStop="False" Template="{StaticResource HorizontalNextTemplate}" VerticalAlignment="Center" Width="70"/>
-                                <Button x:Name="PreviousButtonVertical" HorizontalAlignment="Center" Height="40" IsTabStop="False" Template="{StaticResource VerticalPreviousTemplate}" VerticalAlignment="Top" Width="70"/>
+                                <Button x:Name="PreviousButtonHorizontal" HorizontalAlignment="Left" Height="40" IsTabStop="False" Template="{StaticResource HorizontalPreviousTemplate}" 
+                                        VerticalAlignment="Center" Width="70"/>
+                                <Button x:Name="NextButtonHorizontal" HorizontalAlignment="Right" Height="40" IsTabStop="False" Template="{StaticResource HorizontalNextTemplate}" 
+                                        VerticalAlignment="Center" Width="70"/>
+                                <Button x:Name="PreviousButtonVertical" HorizontalAlignment="Center" Height="40" IsTabStop="False" Template="{StaticResource VerticalPreviousTemplate}" 
+                                        VerticalAlignment="Top" Width="70"/>
                                 <Button x:Name="NextButtonVertical" HorizontalAlignment="Center" Height="40" IsTabStop="False" Template="{StaticResource VerticalNextTemplate}" VerticalAlignment="Bottom" Width="70"/>
                             </Grid>
                         </Border>
-                        <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
-                        <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                        <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" 
+                                   StrokeDashArray="1,1"/>
+                        <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" 
+                                   StrokeDashArray="1,1"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -244,7 +257,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="FlipViewItem">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" 
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

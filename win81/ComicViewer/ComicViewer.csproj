@@ -29,6 +29,8 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -109,11 +111,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ComicModel\ComicImage.cs" />
     <Compile Include="ComicViewModel\ComicImageViewModel.cs" />
     <Compile Include="ComicViewModel\ComicImageViewModelList.cs" />
-    <Compile Include="ComicViewModel\ComicImageFlipViewModel.cs" />
+    <Compile Include="ComicViewModel\ComicImageListViewModel.cs" />
     <Compile Include="ComicViewModel\IComicViewModel.cs" />
     <Compile Include="ComicViewModel\PageLinkViewModel.cs" />
+    <Compile Include="Common\ComicViewException.cs" />
     <Compile Include="Control\AppBarToggleButton.cs" />
     <Compile Include="Common\ComicBookSettings.cs" />
     <Compile Include="Common\ComicAppSetting.cs" />
@@ -121,30 +125,32 @@
     <Compile Include="Common\SettingManager.cs" />
     <Compile Include="Control\SuspensionManager.cs" />
     <Compile Include="ComicViewModel\ViewModelEnums.cs" />
-    <Compile Include="Control\ListViewEx.cs" />
+    <Compile Include="Control\ContiniousView.cs" />
+    <Compile Include="MainPage.Navigation.Events.cs" />
+    <Compile Include="MainPage.Utility.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPageNavigation.cs" />
-    <Compile Include="MainPageOpenClose.cs" />
+    <Compile Include="MainPage.Navigation.cs" />
+    <Compile Include="MainPage.OpenClose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainPageSettings.cs" />
-    <Compile Include="SettingsFlyouts\AboutUs.xaml.cs">
+    <Compile Include="MainPage.Settings.cs" />
+    <Compile Include="App_Settings_Flyouts\AboutUs.xaml.cs">
       <DependentUpon>AboutUs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsFlyouts\ContactUs.xaml.cs">
+    <Compile Include="App_Settings_Flyouts\ContactUs.xaml.cs">
       <DependentUpon>ContactUs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsFlyouts\Settings.xaml.cs">
+    <Compile Include="App_Settings_Flyouts\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsFlyouts\GoToPage.xaml.cs">
+    <Compile Include="App_Settings_Flyouts\GoToPage.xaml.cs">
       <DependentUpon>GoToPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsFlyouts\Effects.xaml.cs">
+    <Compile Include="App_Settings_Flyouts\Effects.xaml.cs">
       <DependentUpon>Effects.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsFlyouts\TermsAndConditions.xaml.cs">
+    <Compile Include="App_Settings_Flyouts\TermsAndConditions.xaml.cs">
       <DependentUpon>TermsAndConditions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Utility.cs" />
@@ -211,27 +217,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyouts\AboutUs.xaml">
+    <Page Include="App_Settings_Flyouts\AboutUs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyouts\ContactUs.xaml">
+    <Page Include="App_Settings_Flyouts\ContactUs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyouts\Settings.xaml">
+    <Page Include="App_Settings_Flyouts\Settings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyouts\GoToPage.xaml">
+    <Page Include="App_Settings_Flyouts\GoToPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyouts\Effects.xaml">
+    <Page Include="App_Settings_Flyouts\Effects.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyouts\TermsAndConditions.xaml">
+    <Page Include="App_Settings_Flyouts\TermsAndConditions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -253,9 +259,7 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ComicModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

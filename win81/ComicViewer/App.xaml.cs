@@ -106,7 +106,7 @@ namespace ComicViewer
                 // parameter
                 if (!rootFrame.Navigate(typeof(MainPage), args))
                 {
-                    throw new Exception("Failed to create initial page");
+                    throw new ComicViewException("Failed to create initial page");
                 }
             }
             else
@@ -116,7 +116,7 @@ namespace ComicViewer
                 // parameter
                 if (!rootFrame.Navigate(typeof(MainPage), args))
                 {
-                    throw new Exception("Failed to create initial page");
+                    throw new ComicViewException("Failed to create initial page");
                 }
             }
             // Ensure the current window is active

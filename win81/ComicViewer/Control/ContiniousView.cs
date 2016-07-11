@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Media;
 
 namespace ComicViewer
 {
-    public class ListViewEx:ListView
+    public class ContiniousView:ListView
     {
         ScrollViewer InternalScrollViewer { get; set; }
 
