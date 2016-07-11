@@ -28,10 +28,10 @@ using Windows.UI.Popups;
 
 namespace ComicViewer
 {
-    public class ComicImage : INotifyPropertyChanged
+    public class ComicImageViewModel : INotifyPropertyChanged
     {
 
-        public ComicImage Next { get; set; }
+        public ComicImageViewModel Next { get; set; }
 
         public double Width { get; set; }
         public double Height { get; set; }
@@ -71,13 +71,15 @@ namespace ComicViewer
                 }
                 else
                 {
-                    //var task = BuildImageAsync();
+                    var task = BuildImageAsync();
 
-                    //task.ContinueWith(async (taskArg) =>
-                    //{
-                    //    await InvalidateData();
+                    task.ContinueWith(async (taskArg) =>
+                    {
+                        await InvalidateData();
 
-                    //}, TaskScheduler.Current);
+                    }, TaskScheduler.Current);
+
+                    task.Wait();
 
                     UpdateImageAttribute();
 
@@ -426,12 +428,12 @@ namespace ComicViewer
         {
             get { return pageNo; }
         }
-        public ComicImage(ComicImage image):this(image.archiveData,image.PageNo)
+        public ComicImageViewModel(ComicImageViewModel image):this(image.archiveData,image.PageNo)
         {
             this.ImageEffects = image.ImageEffects;
         }
 
-        public ComicImage(IArchiveEntry data, int pageNo)
+        public ComicImageViewModel(IArchiveEntry data, int pageNo)
         {
             this.archiveData = data;
             this.pageNo = pageNo;

@@ -38,6 +38,13 @@ namespace ComicViewer
     /// </summary>
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
+
+#if DEBUG
+        const int FILE_OPERATION_WAIT_TIME = 30;
+#else
+        const int FILE_OPERATION_WAIT_TIME = 10;
+#endif
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -110,7 +117,7 @@ namespace ComicViewer
             await messageDia.ShowAsync();
         }
 
-        ComicImage jumpToPage = null;
+        ComicImageViewModel jumpToPage = null;
 
         void continuousView_LayoutUpdated(object sender, object e)
         {
@@ -262,12 +269,12 @@ namespace ComicViewer
         }
         protected override Size MeasureOverride(Size availableSize)
         {
-            ComicImage.PageSize = availableSize;
+            ComicImageViewModel.PageSize = availableSize;
 
             PageViewHeight = availableSize.Height;
             PageViewWidth = availableSize.Width;
 
-            var asyncTask = ComicImage.SetDefaultImageAsync(availableSize);
+            var asyncTask = ComicImageViewModel.SetDefaultImageAsync(availableSize);
 
             return base.MeasureOverride(availableSize);
         }
@@ -496,7 +503,7 @@ namespace ComicViewer
             {
                 try
                 {
-                    if (slimSemaphore.Wait(10))
+                    if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                     {
                         switch (toggleButton.Name)
                         {
@@ -591,7 +598,7 @@ namespace ComicViewer
 
         private void pageFlipView_CleanUpVirtualizedItemEvent(object sender, CleanUpVirtualizedItemEventArgs e)
         {
-            ComicImage image = e.Value as ComicImage;
+            ComicImageViewModel image = e.Value as ComicImageViewModel;
 
             if (image != null)
             {
@@ -602,7 +609,7 @@ namespace ComicViewer
 
         private void bookFlipView_CleanUpVirtualizedItemEvent(object sender, CleanUpVirtualizedItemEventArgs e)
         {
-            ComicImage image = e.Value as ComicImage;
+            ComicImageViewModel image = e.Value as ComicImageViewModel;
 
             if (image != null)
             {
@@ -629,7 +636,7 @@ namespace ComicViewer
 
         private void scrollView_CleanUpVirtualizedItemEvent(object sender, CleanUpVirtualizedItemEventArgs e)
         {
-            ComicImage image = e.Value as ComicImage;
+            ComicImageViewModel image = e.Value as ComicImageViewModel;
 
             if (image != null)
             {
@@ -682,7 +689,7 @@ namespace ComicViewer
             {
                 try
                 {
-                    if (slimSemaphore.Wait(10))
+                    if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                     {
                         switch (toggleButton.Name)
                         {
@@ -1006,7 +1013,7 @@ namespace ComicViewer
         {
             foreach (var item in e.RemovedItems)
             {
-                ComicImage tempImage = item as ComicImage;
+                ComicImageViewModel tempImage = item as ComicImageViewModel;
 
                 if (tempImage != null)
                 {
@@ -1021,7 +1028,7 @@ namespace ComicViewer
             
             foreach (var item in e.RemovedItems)
             {
-                ComicImage tempImage = item as ComicImage;
+                ComicImageViewModel tempImage = item as ComicImageViewModel;
 
                 if (tempImage != null)
                 {

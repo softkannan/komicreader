@@ -9,7 +9,7 @@ using Windows.UI.Popups;
 
 namespace ComicViewer
 {
-    public class ComicSource : IList, INotifyCollectionChanged
+    public class ComicImageFlipViewModel : IList, INotifyCollectionChanged
     {
         //public async Task UpdateAttributes()
         //{
@@ -27,14 +27,14 @@ namespace ComicViewer
         //    }
         //}
 
-        private ComicImages m_images;
+        private ComicImageViewModelList m_images;
 
-        public ComicImages Source
+        public ComicImageViewModelList Source
         {
             get { return m_images; }
         }
 
-        public ComicSource(ComicImages images)
+        public ComicImageFlipViewModel(ComicImageViewModelList images)
         {
             this.m_images = images;
         }
@@ -43,7 +43,7 @@ namespace ComicViewer
 
         public int IndexOf(object value)
         {
-            return m_images.IndexOf(value as ComicImage);
+            return m_images.IndexOf(value as ComicImageViewModel);
             //throw new NotImplementedException();
         }
 
@@ -61,7 +61,7 @@ namespace ComicViewer
 
                 if (!retVal.IsImagePopulated)
                 {
-                    BuildImageAsync(index, retVal as ComicImage);
+                    BuildImageAsync(index, retVal as ComicImageViewModel);
                 }
 
                 return retVal;
@@ -72,7 +72,7 @@ namespace ComicViewer
             }
         }
 
-        async void BuildImageAsync(int index, ComicImage image)
+        async void BuildImageAsync(int index, ComicImageViewModel image)
         {
             try
             {

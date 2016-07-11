@@ -109,18 +109,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Comic\ComicImage.cs" />
-    <Compile Include="Comic\ComicImages.cs" />
-    <Compile Include="Comic\ComicSource.cs" />
-    <Compile Include="Comic\IComic.cs" />
-    <Compile Include="Comic\PageLink.cs" />
+    <Compile Include="ComicViewModel\ComicImageViewModel.cs" />
+    <Compile Include="ComicViewModel\ComicImageViewModelList.cs" />
+    <Compile Include="ComicViewModel\ComicImageFlipViewModel.cs" />
+    <Compile Include="ComicViewModel\IComicViewModel.cs" />
+    <Compile Include="ComicViewModel\PageLinkViewModel.cs" />
     <Compile Include="Control\AppBarToggleButton.cs" />
     <Compile Include="Common\ComicBookSettings.cs" />
     <Compile Include="Common\ComicAppSetting.cs" />
     <Compile Include="Control\LayoutAwarePage.cs" />
     <Compile Include="Common\SettingManager.cs" />
     <Compile Include="Control\SuspensionManager.cs" />
-    <Compile Include="Comic\Enums.cs" />
+    <Compile Include="ComicViewModel\ViewModelEnums.cs" />
     <Compile Include="Control\ListViewEx.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -252,6 +252,9 @@
       <HintPath>..\packages\WriteableBitmapEx.1.5.0.0\lib\NetCore45\WriteableBitmapEx.WinRT.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ComicModel\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

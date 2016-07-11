@@ -28,7 +28,7 @@ using Windows.UI.Popups;
 
 namespace ComicViewer
 {
-    public class ComicImages : List<ComicImage>
+    public class ComicImageViewModelList : List<ComicImageViewModel>
     {
         //public ScrollBarVisibility HorizontalScrollBarVisibility { get; set; }
         //public ScrollMode HorizontalScrollMode { get; set; }

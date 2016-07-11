@@ -7,11 +7,11 @@ using Windows.UI.Xaml.Media;
 
 namespace ComicViewer
 {
-    public class PageLink
+    public class PageLinkViewModel
     {
         public string DisplayName { get; set; }
         public PageLinkType Type { get; set; }
-        public ComicImage Page { get; set; }
+        public ComicImageViewModel Page { get; set; }
         public Brush BackColor { get; set; }
     }
 }

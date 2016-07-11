@@ -101,11 +101,11 @@ namespace ComicViewer
                     RestoreSettings(comicFile.Name);
 
                     var files = (from t in comicFileReader.Entries where t.IsImageFile() == true orderby t.FilePath select t).ToList();
-                    Pages = new ComicImages();
+                    Pages = new ComicImageViewModelList();
                     int tempPage = 1;
                     foreach (var item in files)
                     {
-                        Pages.Add(new ComicImage(item, tempPage));
+                        Pages.Add(new ComicImageViewModel(item, tempPage));
                         tempPage++;
                     }
                     LastPage = tempPage - 1;

@@ -151,7 +151,7 @@ namespace ComicViewer
 
         IArchive comicFileReader = null;
 
-        public ComicImages Pages { get; set; }
+        public ComicImageViewModelList Pages { get; set; }
 
         void SaveSettings(string fileName)
         {

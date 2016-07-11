@@ -7,10 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" >
 
-    
-
     <Page.Resources>
-
+        
         <ItemsPanelTemplate x:Key="BookFlipViewItemsPanelTemplate">
             <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal" VirtualizationMode="Standard" CleanUpVirtualizedItemEvent="bookFlipView_CleanUpVirtualizedItemEvent" />
         </ItemsPanelTemplate>
@@ -24,6 +22,8 @@
         </ItemsPanelTemplate>
 
     </Page.Resources>
+
+    <!--bottom toolbar layout-->
     <Page.BottomAppBar>
         <AppBar Margin="0" Height="100">
             <Grid>
@@ -55,6 +55,8 @@
             </Grid>
         </AppBar>
     </Page.BottomAppBar>
+
+    <!--top toolbar layout-->
     <Page.TopAppBar>
         <AppBar Margin="0" Height="100" Opened="TopAppBar_Opened" >
             <Grid Margin="0">
@@ -82,43 +84,41 @@
     <Grid x:Name="mainGrid">
 
         <Grid x:Name="comicGrid" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Visibility="Collapsed" DoubleTapped="comicGrid_DoubleTapped" Tapped="comicGrid_Tapped" >
+            <!--Continious view control layout-->
             <local:ListViewEx x:Name="continuousView" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ScrollViewItemContainerStyle}" 
                       ItemsPanel="{StaticResource ScrollViewPanelTemplate}" DataFetchSize="1" 
                       ItemTemplate="{StaticResource ScrollViewItemTemplate}" Style="{StaticResource ScrollViewStyle}" 
                       HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
-
+            <!--single page view control layout-->
             <ScrollViewer Background="{x:Null}" x:Name="pageView" HorizontalAlignment="Center" HorizontalScrollBarVisibility="{Binding Path=HorizontalScrollBarVisibility}"
                           HorizontalScrollMode="{Binding Path=HorizontalScrollMode}" VerticalScrollBarVisibility="{Binding Path=VerticalScrollBarVisibility}"
                           VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}" 
-                          BringIntoViewOnFocusChange="False"
-                          >
+                          BringIntoViewOnFocusChange="False" >
                 <Image Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}"   />
             </ScrollViewer>
+            <!--book/2 page view control layout-->
             <ScrollViewer Background="{x:Null}" x:Name="bookView" HorizontalScrollBarVisibility="{Binding Path=HorizontalScrollBarVisibility}"
                           HorizontalScrollMode="{Binding Path=HorizontalScrollMode}" VerticalScrollBarVisibility="{Binding Path=VerticalScrollBarVisibility}"
                           VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}"  
-                          BringIntoViewOnFocusChange="False"
-                          >
+                          BringIntoViewOnFocusChange="False" >
                 <StackPanel  Background="{x:Null}" x:Name="twoPageStackPanel" HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="{Binding Path=FlowDirection}">
                     <Image x:Name="page1" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}"  />
                     <Image x:Name="page2" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
                 </StackPanel>
             </ScrollViewer>
+            <!--single page view with flip style page turn control layout-->
             <FlipView x:Name="pageFlipView"  ItemTemplate="{StaticResource PageFlipViewDataItemTemplate}"  
                       ItemsPanel="{StaticResource PageFlipViewPanel}" ItemContainerStyle="{StaticResource PageFlipViewItemStyle}" Style="{StaticResource PageFlipViewStyle}" 
-                      ScrollViewer.BringIntoViewOnFocusChange="False" 
-                      >
+                      ScrollViewer.BringIntoViewOnFocusChange="False" >
 
             </FlipView>
+            <!--book/2page page view with flip style page turn control layout-->
             <FlipView x:Name="bookFlipView" ItemTemplate="{StaticResource BookFlipViewItemDataTemplate}" 
                       Style="{StaticResource BookFlipViewStyle}" ItemContainerStyle="{StaticResource BookFlipViewItemStyle}" ItemsPanel="{StaticResource BookFlipViewItemsPanelTemplate}" 
-                      
-                      ScrollViewer.BringIntoViewOnFocusChange="False" 
-                      
-                      >
-
+                      ScrollViewer.BringIntoViewOnFocusChange="False" >
             </FlipView>
         </Grid>
+        <!--busy control-->
         <Grid x:Name="busyGrid" Visibility="Collapsed">
             <ProgressBar IsIndeterminate="True" ></ProgressBar>
         </Grid>

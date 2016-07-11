@@ -16,7 +16,7 @@ namespace ComicViewer
     {
         public float ZoomFactor { get; set; }
 
-        public ComicImages CurrentSource { get; set; }
+        public ComicImageViewModelList CurrentSource { get; set; }
 
         int totalPage = 0;
 
@@ -64,7 +64,7 @@ namespace ComicViewer
         {
             if (CurrentSource != null)
             {
-                if (slimSemaphore.Wait(10))
+                if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                 {
                     CurrentPage = CurrentSource.Max((item) => item.PageNo);
                     slimSemaphore.Release();
@@ -76,7 +76,7 @@ namespace ComicViewer
         {
             if (CurrentSource != null)
             {
-                if (slimSemaphore.Wait(10))
+                if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                 {
                     CurrentPage = 1;
 
@@ -89,7 +89,7 @@ namespace ComicViewer
         {
             if (CurrentSource != null)
             {
-                if (slimSemaphore.Wait(10))
+                if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                 {
                     
 
@@ -115,7 +115,7 @@ namespace ComicViewer
         {
             if (CurrentSource != null)
             {
-                if (slimSemaphore.Wait(10))
+                if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                 {
                     if (PanelMode == ComicViewer.PanelMode.DoublePage)
                     {
@@ -177,7 +177,7 @@ namespace ComicViewer
 
             try
             {
-                if (slimSemaphore.Wait(10))
+                if (slimSemaphore.Wait(FILE_OPERATION_WAIT_TIME))
                 {
                     if (Pages != null)
                     {
@@ -195,7 +195,7 @@ namespace ComicViewer
 
                                     if (AppSettings.FlipView)
                                     {
-                                        pageFlipView.ItemsSource = new ComicSource(CurrentSource);
+                                        pageFlipView.ItemsSource = new ComicImageFlipViewModel(CurrentSource);
 
                                         pageFlipView.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
@@ -227,9 +227,9 @@ namespace ComicViewer
                                     if (AppSettings.FlipView)
                                     {
 
-                                        CurrentSource = new ComicImages();
+                                        CurrentSource = new ComicImageViewModelList();
 
-                                        ComicImage firstImage = null;
+                                        ComicImageViewModel firstImage = null;
 
                                         var tempIndex = Pages.FindIndex((item) => item.PageNo == CurrentPage);
                                         int skipCount = tempIndex % 2;
@@ -242,11 +242,11 @@ namespace ComicViewer
 
                                             Pages.Skip(1 + skipCount).Exec((item) =>
                                             {
-                                                firstImage.Next = new ComicImage(item);
+                                                firstImage.Next = new ComicImageViewModel(item);
                                                 firstImage = item;
                                             });
 
-                                            CurrentSource = new ComicImages();
+                                            CurrentSource = new ComicImageViewModelList();
 
                                             if (skipCount == 1)
                                             {
@@ -260,7 +260,7 @@ namespace ComicViewer
                                             
                                         }
 
-                                        bookFlipView.ItemsSource = new ComicSource(CurrentSource);
+                                        bookFlipView.ItemsSource = new ComicImageFlipViewModel(CurrentSource);
 
                                         bookFlipView.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
@@ -272,8 +272,8 @@ namespace ComicViewer
                                         ImageSource imgSrc1 = null;
                                         ImageSource imgSrc2 = null;
 
-                                        ComicImage frame1 = null;
-                                        ComicImage frame2 = null;
+                                        ComicImageViewModel frame1 = null;
+                                        ComicImageViewModel frame2 = null;
 
                                         frame1 = CurrentSource.FirstOrDefault((item) => item.PageNo == CurrentPage);
                                         frame2 = CurrentSource.FirstOrDefault((item) => item.PageNo == CurrentPage + 1);
@@ -337,7 +337,7 @@ namespace ComicViewer
 
                                     jumpToPage = CurrentSource.First((item) => item.PageNo == CurrentPage);
 
-                                    continuousView.ItemsSource = new ComicSource(CurrentSource);
+                                    continuousView.ItemsSource = new ComicImageFlipViewModel(CurrentSource);
 
                                     bttnBack.IsEnabled = false;
                                     bttnNext.IsEnabled = false;
@@ -375,7 +375,7 @@ namespace ComicViewer
             bttnZoomOut.Visibility = Windows.UI.Xaml.Visibility.Visible;
         }
 
-        private void BookViewUpdateUI(ComicImage item)
+        private void BookViewUpdateUI(ComicImageViewModel item)
         {
             continuousView.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             if (AppSettings.FlipView)
@@ -415,7 +415,7 @@ namespace ComicViewer
             bookView.ChangeView(null,null,item.ZoomFactor);
         }
 
-        private void UpdateScrollSettings(ComicImage image)
+        private void UpdateScrollSettings(ComicImageViewModel image)
         {
             switch (PanelMode)
             {
@@ -530,7 +530,7 @@ namespace ComicViewer
 
                     if (tempListViewItem != null)
                     {
-                        ComicImage tempImage = tempListViewItem.DataContext as ComicImage;
+                        ComicImageViewModel tempImage = tempListViewItem.DataContext as ComicImageViewModel;
 
                         if (tempImage != null)
                         {
@@ -541,7 +541,7 @@ namespace ComicViewer
             }
             else if (PanelMode == ComicViewer.PanelMode.SinglePage && AppSettings.FlipView)
             {
-                var tempPage = pageFlipView.SelectedItem as ComicImage;
+                var tempPage = pageFlipView.SelectedItem as ComicImageViewModel;
 
                 if (tempPage != null)
                 {
@@ -550,7 +550,7 @@ namespace ComicViewer
             }
             else if (PanelMode == ComicViewer.PanelMode.DoublePage && AppSettings.FlipView)
             {
-                var tempPage = bookFlipView.SelectedItem as ComicImage;
+                var tempPage = bookFlipView.SelectedItem as ComicImageViewModel;
 
                 if (tempPage != null)
                 {
@@ -559,7 +559,7 @@ namespace ComicViewer
             }
             else if (PanelMode == ComicViewer.PanelMode.SinglePage)
             {
-                var tempPage = pageView.DataContext as ComicImage;
+                var tempPage = pageView.DataContext as ComicImageViewModel;
 
                 if (tempPage != null)
                 {
@@ -568,7 +568,7 @@ namespace ComicViewer
             }
             else if (PanelMode == ComicViewer.PanelMode.DoublePage)
             {
-                var tempPage = bookView.DataContext as ComicImage;
+                var tempPage = bookView.DataContext as ComicImageViewModel;
 
                 if (tempPage != null)
                 {

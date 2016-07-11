@@ -32,18 +32,18 @@ namespace ComicViewer
         public Func<int,Task> GotoPage = null;
 
         int currentPage = 1;
-        List<ComicImage> pages;
+        List<ComicImageViewModel> pages;
         List<int> bookmarks;
 
         private void UpdatePages()
         {
-            List<PageLink> tempList = new List<PageLink>();
+            List<PageLinkViewModel> tempList = new List<PageLinkViewModel>();
 
             var tempBrush = new SolidColorBrush(Colors.Chocolate);
 
-            tempList.AddRange(from t in bookmarks from t1 in pages where t == t1.PageNo select new PageLink() { Page = t1, DisplayName = string.Format("B{0}", t1.PageNo), Type = PageLinkType.Bookmark, BackColor = tempBrush });
+            tempList.AddRange(from t in bookmarks from t1 in pages where t == t1.PageNo select new PageLinkViewModel() { Page = t1, DisplayName = string.Format("B{0}", t1.PageNo), Type = PageLinkType.Bookmark, BackColor = tempBrush });
 
-            var query = (from t in pages select new PageLink() { Page = t, DisplayName = string.Format("P{0}", t.PageNo), Type = PageLinkType.Page, BackColor = gotoGrid.Background }).ToList();
+            var query = (from t in pages select new PageLinkViewModel() { Page = t, DisplayName = string.Format("P{0}", t.PageNo), Type = PageLinkType.Page, BackColor = gotoGrid.Background }).ToList();
 
             tempList.AddRange(query);
 
@@ -64,7 +64,7 @@ namespace ComicViewer
 
         }
 
-        public void SetPages(List<ComicImage> pages,List<int> bookmarks,int currentPage)
+        public void SetPages(List<ComicImageViewModel> pages,List<int> bookmarks,int currentPage)
         {
             this.pages = pages;
             this.bookmarks = bookmarks;
@@ -84,7 +84,7 @@ namespace ComicViewer
                 return;
             }
 
-            PageLink tempImage = tempBttn.Tag as PageLink;
+            PageLinkViewModel tempImage = tempBttn.Tag as PageLinkViewModel;
 
             if(tempImage == null)
             {

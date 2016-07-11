@@ -7,9 +7,9 @@ using Windows.Foundation;
 
 namespace ComicViewer
 {
-    public interface IComic
+    public interface IComicViewModel
     {
-        ComicImages Pages { get; }
+        ComicImageViewModelList Pages { get; }
         Size PageSize { get; }
         void Close();
     }
