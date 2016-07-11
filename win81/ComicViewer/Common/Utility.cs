@@ -18,10 +18,9 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace ComicViewer
 {
-
     public static class ComicViewerUtility
     {
-        public static T GetElement<T>(this UIElement uiElement) where T: class
+        public static T GetElement<T>(this UIElement uiElement) where T : class
         {
             T retVal = null;
 
@@ -99,7 +98,7 @@ namespace ComicViewer
 
         public static void Exec<TSource>(this IEnumerable<TSource> source, Action<TSource, int> predicate)
         {
-            if(source == null || predicate == null)
+            if (source == null || predicate == null)
             {
                 return;
             }
@@ -163,7 +162,7 @@ namespace ComicViewer
 
         public static bool IsImageFile(this IEntry entry)
         {
-            if(entry == null)
+            if (entry == null)
             {
                 return false;
             }
@@ -181,6 +180,7 @@ namespace ComicViewer
                 case ".bmp":
                 case ".dib":
                     return true;
+
                 default:
                     return false;
             }
