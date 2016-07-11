@@ -9,6 +9,8 @@ namespace ComicViewer
 {
     public class SettingManager
     {
+        private const int MAX_NO_FILE_HISTORY = 100;
+
         private SettingManager()
         {
         }
@@ -40,8 +42,7 @@ namespace ComicViewer
         public static void ClearHistory()
         {
             var count = History.Values.Count;
-
-            if (count > 100)
+            if (count > MAX_NO_FILE_HISTORY)
             {
             }
         }

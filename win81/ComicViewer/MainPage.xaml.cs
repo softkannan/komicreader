@@ -229,9 +229,6 @@ namespace ComicViewer
             catch (Exception)
             {
             }
-            finally
-            {
-            }
         }
 
         public void Dispose()

@@ -29,7 +29,7 @@ namespace ComicViewer
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         private double settingsWidth = 370;
         private Popup settingsPopup;

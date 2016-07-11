@@ -126,6 +126,9 @@
     <Compile Include="Control\SuspensionManager.cs" />
     <Compile Include="ComicViewModel\ViewModelEnums.cs" />
     <Compile Include="Control\ContiniousView.cs" />
+    <Compile Include="Common\SuspensionManagerException.cs" />
+    <Compile Include="Common\EffectSetting.cs" />
+    <Compile Include="Common\EffectSettings.cs" />
     <Compile Include="MainPage.Navigation.Events.cs" />
     <Compile Include="MainPage.Utility.cs" />
     <Compile Include="MainPage.xaml.cs">

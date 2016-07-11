@@ -167,17 +167,7 @@ namespace ComicViewer
         }
     }
 
-    public class EffectSetting
-    {
-        public string Name { get; set; }
-        public bool IsEnabled { get; set; }
-        public bool HasValue { get; set; }
-        public double Value { set; get; }
-        public ImageEffect Type { get; set; }
-    }
+ 
 
-    public class EffectSettings : List<EffectSetting>
-    {
-        public Func<Task> EffectChanged = null;
-    }
+
 }
