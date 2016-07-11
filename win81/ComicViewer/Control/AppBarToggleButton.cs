@@ -19,7 +19,7 @@ namespace ComicViewer
                 new PropertyMetadata(false, OnIsCheckedInternalChanged));
 
         /// <summary>
-        /// Gets or sets the IsCheckedInternal property. This dependency property 
+        /// Gets or sets the IsCheckedInternal property. This dependency property
         /// indicates ....
         /// </summary>
         public bool IsCheckedInternal

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SharpCompress.Archive;
+using SharpCompress.Archive.Rar;
+using Softbuild.Media;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,11 +13,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using SharpCompress.Archive;
-using SharpCompress.Archive.Rar;
-using Softbuild.Media;
-
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,7 +20,6 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
-
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,8 +30,8 @@ namespace ComicViewer.ComicModel
 {
     public class ComicImage : IDisposable
     {
-        IArchiveEntry archiveData = null;
-        ImageSource imageData = null;
+        private IArchiveEntry archiveData = null;
+        private ImageSource imageData = null;
 
         public RotatePage Rotation { get; set; }
         public double ActualWidth { get; private set; }
@@ -60,7 +57,7 @@ namespace ComicViewer.ComicModel
                 {
                     imageData = GetImageAsync().Result;
 
-                    if(imageData == null)
+                    if (imageData == null)
                     {
                         imageData = DefaultImage;
                     }
@@ -71,6 +68,7 @@ namespace ComicViewer.ComicModel
                 return imageData;
             }
         }
+
         public List<EffectSetting> ImageEffects { get; set; }
 
         static ComicImage()
@@ -79,6 +77,7 @@ namespace ComicViewer.ComicModel
             var task = SetDefaultImageAsync(DefaultImageSize);
             task.Wait();
         }
+
         public ComicImage(IArchiveEntry data)
         {
             archiveData = data;
@@ -99,7 +98,6 @@ namespace ComicViewer.ComicModel
 
                 using (InMemoryRandomAccessStream tempStream = new InMemoryRandomAccessStream())
                 {
-
                     var writer = tempStream.AsStreamForWrite();
                     {
                         //rawData.WriteTo(writer);
@@ -120,9 +118,7 @@ namespace ComicViewer.ComicModel
                                     writer.Flush();
                                     break;
                                 }
-
                             }
-
                         }
                     }
 
@@ -163,7 +159,6 @@ namespace ComicViewer.ComicModel
                             ActualWidth = tempImage.PixelWidth;
                             ActualHeight = tempImage.PixelHeight;
 
-
                             switch (Rotation)
                             {
                                 case RotatePage.Rotate90:
@@ -172,12 +167,14 @@ namespace ComicViewer.ComicModel
                                         tempImage = tempData.Rotate(90);
                                     }
                                     break;
+
                                 case RotatePage.Rotate180:
                                     {
                                         var tempData = tempImage;
                                         tempImage = tempData.Rotate(180);
                                     }
                                     break;
+
                                 case RotatePage.Rotate270:
                                     {
                                         var tempData = tempImage;
@@ -196,27 +193,30 @@ namespace ComicViewer.ComicModel
                                             tempImage = tempData.EffectAutoColoring();
                                         }
                                         break;
+
                                     case ComicViewer.ImageEffect.Grey:
                                         {
                                             tempImage = tempData.EffectGrayscale();
                                         }
                                         break;
+
                                     case ImageEffect.Bakumatsu:
                                         {
                                             tempImage = await tempData.EffectBakumatsuAsync();
                                         }
                                         break;
+
                                     case ImageEffect.Contrast:
                                         {
                                             tempImage = tempData.EffectContrast(item.Value);
                                         }
                                         break;
+
                                     case ImageEffect.Posterize:
                                         {
                                             tempImage = tempData.EffectPosterize((byte)item.Value);
                                         }
                                         break;
-
                                 }
                             }
 
@@ -231,7 +231,7 @@ namespace ComicViewer.ComicModel
                 return null;
             }
         }
-        
+
         public static async Task SetDefaultImageAsync(Size pageSize)
         {
             WriteableBitmap tempImage = new WriteableBitmap((int)pageSize.Width, (int)pageSize.Height);
@@ -255,10 +255,12 @@ namespace ComicViewer.ComicModel
         }
 
         #region IDisposable
+
         public void Dispose()
         {
             Dispose(true);
         }
+
         // Protected implementation of Dispose pattern.
         protected virtual void Dispose(bool disposing)
         {
@@ -279,6 +281,7 @@ namespace ComicViewer.ComicModel
             // Free any unmanaged objects here.
             //
         }
-        #endregion
+
+        #endregion IDisposable
     }
 }

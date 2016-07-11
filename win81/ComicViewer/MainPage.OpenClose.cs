@@ -11,8 +11,6 @@ namespace ComicViewer
 {
     public partial class MainPage
     {
-        
-
         public async Task OpenStorageFileAsync(StorageFile comicFile)
         {
             if (comicFile != null)
@@ -45,7 +43,7 @@ namespace ComicViewer
                     }
                     LastPage = tempPage - 1;
                     ZoomFactor = 1;
-                                       
+
                     if (Pages.Count < 1)
                     {
                         throw new InvalidDataException("Unable find any comic strips");
@@ -135,7 +133,7 @@ namespace ComicViewer
             if (comicFileReader != null)
             {
                 UpdateCurrentPage();
-                
+
                 Pages.Exec((item) => item.Next = null);
 
                 ReleaseImage();

@@ -5,22 +5,21 @@
     xmlns:local="using:ComicViewer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" >
+    mc:Ignorable="d">
 
     <Page.Resources>
-        
+
         <ItemsPanelTemplate x:Key="BookFlipViewItemsPanelTemplate">
             <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal" VirtualizationMode="Standard" CleanUpVirtualizedItemEvent="bookFlipView_CleanUpVirtualizedItemEvent" />
         </ItemsPanelTemplate>
-        
+
         <ItemsPanelTemplate x:Key="PageFlipViewPanel">
             <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal" VirtualizationMode="Standard" CleanUpVirtualizedItemEvent="pageFlipView_CleanUpVirtualizedItemEvent" />
         </ItemsPanelTemplate>
 
         <ItemsPanelTemplate x:Key="ContinuousViewPanelTemplate">
-            <VirtualizingStackPanel HorizontalAlignment="Center" Orientation="Vertical" VirtualizationMode="Standard"  CleanUpVirtualizedItemEvent="continuousView_CleanUpVirtualizedItemEvent"/>
+            <VirtualizingStackPanel HorizontalAlignment="Center" Orientation="Vertical" VirtualizationMode="Standard"  CleanUpVirtualizedItemEvent="continuousView_CleanUpVirtualizedItemEvent" />
         </ItemsPanelTemplate>
-
     </Page.Resources>
 
     <!--bottom toolbar layout-->
@@ -41,24 +40,23 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" >
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
                         <RadioButton x:Name="bttnSinglePage" Style="{StaticResource SinglePageAppBarButtonStyle}" Checked="PanelMode_Checked" GroupName="PanelMode" />
                         <RadioButton x:Name="bttnContinuousPage" Style="{StaticResource ContinuousPageAppBarButtonStyle}" Checked="PanelMode_Checked" GroupName="PanelMode" />
                         <RadioButton x:Name="bttnTwoPage" Style="{StaticResource BookAppBarButtonStyle}" Checked="PanelMode_Checked" GroupName="PanelMode" />
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Button x:Name="bttnGoto" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource GoAppBarButtonStyle}" Click="bttnGoto_Click"/>
+                        <Button x:Name="bttnGoto" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource GoAppBarButtonStyle}" Click="bttnGoto_Click" />
                     </StackPanel>
                 </StackPanel>
                 <Button x:Name="bttnNext" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource NextAppBarButtonStyle}" Click="bttnNext_Click" />
-
             </Grid>
         </AppBar>
     </Page.BottomAppBar>
 
     <!--top toolbar layout-->
     <Page.TopAppBar>
-        <AppBar Margin="0" Height="100" Opened="TopAppBar_Opened" >
+        <AppBar Margin="0" Height="100" Opened="TopAppBar_Opened">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100*" />
@@ -69,7 +67,7 @@
                     <Button x:Name="bttnOpen"  VerticalAlignment="Center"  Click="bttnOpen_Click" Style="{StaticResource OpenFileAppBarButtonStyle}" />
                     <Button x:Name="bttnClose" VerticalAlignment="Center"  Click="bttnOpen_Click" Style="{StaticResource CloseComicAppBarButtonStyle}" />
                 </StackPanel>
-                <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center" >
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                     <RadioButton x:Name="bttnFitWidth" Style="{StaticResource FitWidthAppBarButtonStyle}" Checked="Zoom_Checked" GroupName="Zoom" />
                     <RadioButton x:Name="bttnFit" IsChecked="True" Style="{StaticResource FitAppBarButtonStyle}" Checked="Zoom_Checked" GroupName="Zoom" />
                     <RadioButton x:Name="bttnFreeForm" Style="{StaticResource FreeFormPageAppBarButtonStyle}" Checked="Zoom_Checked" GroupName="Zoom" />
@@ -80,42 +78,41 @@
             </Grid>
         </AppBar>
     </Page.TopAppBar>
-   
+
     <Grid x:Name="mainGrid">
 
-        <Grid x:Name="comicGrid" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Visibility="Collapsed" DoubleTapped="comicGrid_DoubleTapped" Tapped="comicGrid_Tapped" >
+        <Grid x:Name="comicGrid" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Visibility="Collapsed" DoubleTapped="comicGrid_DoubleTapped" Tapped="comicGrid_Tapped">
             <!--Continious view control layout-->
-            <local:ContiniousView x:Name="continuousView" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ScrollViewItemContainerStyle}" 
-                      ItemsPanel="{StaticResource ContinuousViewPanelTemplate}" DataFetchSize="1" 
-                      ItemTemplate="{StaticResource ScrollViewItemTemplate}" Style="{StaticResource ScrollViewStyle}" 
+            <local:ContiniousView x:Name="continuousView" SelectionMode="None" IsItemClickEnabled="False" ItemContainerStyle="{StaticResource ScrollViewItemContainerStyle}"
+                      ItemsPanel="{StaticResource ContinuousViewPanelTemplate}" DataFetchSize="1"
+                      ItemTemplate="{StaticResource ScrollViewItemTemplate}" Style="{StaticResource ScrollViewStyle}"
                       HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
             <!--single page view control layout-->
             <ScrollViewer Background="{x:Null}" x:Name="pageView" HorizontalAlignment="Center" HorizontalScrollBarVisibility="{Binding Path=HorizontalScrollBarVisibility}"
                           HorizontalScrollMode="{Binding Path=HorizontalScrollMode}" VerticalScrollBarVisibility="{Binding Path=VerticalScrollBarVisibility}"
-                          VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}" 
-                          BringIntoViewOnFocusChange="False" >
-                <Image Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}"   />
+                          VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}"
+                          BringIntoViewOnFocusChange="False">
+                <Image Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
             </ScrollViewer>
             <!--book/2 page view control layout-->
             <ScrollViewer Background="{x:Null}" x:Name="bookView" HorizontalScrollBarVisibility="{Binding Path=HorizontalScrollBarVisibility}"
                           HorizontalScrollMode="{Binding Path=HorizontalScrollMode}" VerticalScrollBarVisibility="{Binding Path=VerticalScrollBarVisibility}"
-                          VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}"  
-                          BringIntoViewOnFocusChange="False" >
+                          VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}"
+                          BringIntoViewOnFocusChange="False">
                 <StackPanel  Background="{x:Null}" x:Name="twoPageStackPanel" HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="{Binding Path=FlowDirection}">
-                    <Image x:Name="page1" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}"  />
+                    <Image x:Name="page1" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
                     <Image x:Name="page2" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
                 </StackPanel>
             </ScrollViewer>
             <!--single page view with flip style page turn control layout-->
-            <FlipView x:Name="pageFlipView"  ItemTemplate="{StaticResource PageFlipViewDataItemTemplate}"  
-                      ItemsPanel="{StaticResource PageFlipViewPanel}" ItemContainerStyle="{StaticResource PageFlipViewItemStyle}" Style="{StaticResource PageFlipViewStyle}" 
-                      ScrollViewer.BringIntoViewOnFocusChange="False" >
-
+            <FlipView x:Name="pageFlipView"  ItemTemplate="{StaticResource PageFlipViewDataItemTemplate}"
+                      ItemsPanel="{StaticResource PageFlipViewPanel}" ItemContainerStyle="{StaticResource PageFlipViewItemStyle}" Style="{StaticResource PageFlipViewStyle}"
+                      ScrollViewer.BringIntoViewOnFocusChange="False">
             </FlipView>
             <!--book/2page page view with flip style page turn control layout-->
-            <FlipView x:Name="bookFlipView" ItemTemplate="{StaticResource BookFlipViewItemDataTemplate}" 
-                      Style="{StaticResource BookFlipViewStyle}" ItemContainerStyle="{StaticResource BookFlipViewItemStyle}" ItemsPanel="{StaticResource BookFlipViewItemsPanelTemplate}" 
-                      ScrollViewer.BringIntoViewOnFocusChange="False" >
+            <FlipView x:Name="bookFlipView" ItemTemplate="{StaticResource BookFlipViewItemDataTemplate}"
+                      Style="{StaticResource BookFlipViewStyle}" ItemContainerStyle="{StaticResource BookFlipViewItemStyle}" ItemsPanel="{StaticResource BookFlipViewItemsPanelTemplate}"
+                      ScrollViewer.BringIntoViewOnFocusChange="False">
             </FlipView>
         </Grid>
         <!--busy control-->
@@ -123,5 +120,4 @@
             <ProgressBar IsIndeterminate="True" ></ProgressBar>
         </Grid>
     </Grid>
-
 </Page>

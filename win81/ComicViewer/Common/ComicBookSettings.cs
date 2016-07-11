@@ -22,7 +22,7 @@ namespace ComicViewer
             }
         }
 
-        #endregion
+        #endregion INotifyPropertyChanged Members
 
         public ComicBookSetting()
         {
@@ -34,7 +34,6 @@ namespace ComicViewer
             try
             {
                 UnPackSetting(setting);
-
             }
             catch (Exception)
             {
@@ -53,8 +52,8 @@ namespace ComicViewer
 
         public int CurrentPage { get; set; }
         public string FileName { get; set; }
-        public PanelMode PanelMode{get;set;}
-        public ZoomType Zoom{get;set;}
+        public PanelMode PanelMode { get; set; }
+        public ZoomType Zoom { get; set; }
         public RotatePage Rotate { get; set; }
         public DateTime LastRead { get; set; }
 

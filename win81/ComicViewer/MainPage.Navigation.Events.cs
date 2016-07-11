@@ -13,8 +13,8 @@ namespace ComicViewer
 {
     public partial class MainPage
     {
-        
         #region Navigate / Goto methods
+
         private async void bttnNext_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -67,8 +67,6 @@ namespace ComicViewer
             }
         }
 
-        
-
         private void bttnGoto_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -105,8 +103,7 @@ namespace ComicViewer
             }
         }
 
-
-        void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
         {
             if (e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.Deactivated)
             {
@@ -118,14 +115,15 @@ namespace ComicViewer
             }
         }
 
-        void gotoPopup_Closed(object sender, object e)
+        private void gotoPopup_Closed(object sender, object e)
         {
             Window.Current.Activated -= Current_Activated;
         }
-#endregion
 
+        #endregion Navigate / Goto methods
 
         #region Rotate and Zoom methods
+
         private async void bttnRotate_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -143,6 +141,7 @@ namespace ComicViewer
                 NotBusy();
             }
         }
+
         private async void bttnZoomIn_Click(object sender, RoutedEventArgs e)
         {
             if (Zoom != ZoomType.Custom)
@@ -190,8 +189,6 @@ namespace ComicViewer
             }
         }
 
-
-
         private async void Zoom_Checked(object sender, RoutedEventArgs e)
         {
             if (IgnoreZoomEvent)
@@ -212,13 +209,14 @@ namespace ComicViewer
                             case "bttnFit":
                                 Zoom = ZoomType.Fit;
                                 break;
+
                             case "bttnFitWidth":
                                 Zoom = ZoomType.FitWidth;
                                 break;
+
                             case "bttnFreeForm":
                                 Zoom = ZoomType.FreeForm;
                                 break;
-
                         }
                     }
                 }
@@ -230,7 +228,6 @@ namespace ComicViewer
                 try
                 {
                     Busy();
-
 
                     //UpdateZoomStatus();
                     await ShowPage();
@@ -244,13 +241,11 @@ namespace ComicViewer
                     NotBusy();
                 }
             }
-
         }
-        #endregion
 
+        #endregion Rotate and Zoom methods
 
         #region Grid / Tap / Keydown / Top Level methods
-
 
         private async void PanelMode_Checked(object sender, RoutedEventArgs e)
         {
@@ -271,9 +266,11 @@ namespace ComicViewer
                             case "bttnSinglePage":
                                 PanelMode = ComicViewer.PanelMode.SinglePage;
                                 break;
+
                             case "bttnTwoPage":
                                 PanelMode = ComicViewer.PanelMode.DoublePage;
                                 break;
+
                             case "bttnContinuousPage":
                                 PanelMode = ComicViewer.PanelMode.ContniousPage;
                                 if (Zoom == ZoomType.Fit || Zoom == ZoomType.FreeForm)
@@ -316,6 +313,7 @@ namespace ComicViewer
                 SaveSettings(FileName);
             }
         }
+
         private async void comicGrid_DoubleTapped(object sender, Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs e)
         {
             if (AppSettings.MouseFlipType != MousePageFlipType.Double)
@@ -353,6 +351,7 @@ namespace ComicViewer
 
             await PerformFlipPageAt(position);
         }
+
         private async void comicGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.VirtualKey == Windows.System.VirtualKey.Left || e.VirtualKey == Windows.System.VirtualKey.Right ||
@@ -423,13 +422,10 @@ namespace ComicViewer
             }
             else if (e.VirtualKey == Windows.System.VirtualKey.Down)
             {
-
                 if (Zoom != ZoomType.Fit)
                 {
-
                     if (AppSettings.FlipView)
                     {
-
                     }
                     else
                     {
@@ -447,10 +443,8 @@ namespace ComicViewer
             }
             else if (e.VirtualKey == Windows.System.VirtualKey.Up)
             {
-
                 if (Zoom != ZoomType.Fit)
                 {
-
                     if (AppSettings.FlipView)
                     {
                         if (PanelMode == ComicViewer.PanelMode.SinglePage)
@@ -475,10 +469,11 @@ namespace ComicViewer
                 }
             }
         }
-        #endregion
 
+        #endregion Grid / Tap / Keydown / Top Level methods
 
         #region Continuous View methods
+
         private void continuousView_LayoutUpdated(object sender, object e)
         {
             try
@@ -504,7 +499,6 @@ namespace ComicViewer
                 image.UnsetImageData();
             }
 
-
             //return;
 
             //if (AppSettings.CachePages == 0)
@@ -516,7 +510,6 @@ namespace ComicViewer
             //}
             //else
             //{
-
             //    if (image != null)
             //    {
             //        image.MarkForGarbage();
@@ -537,10 +530,11 @@ namespace ComicViewer
             //    }
             //}
         }
-#endregion
 
+        #endregion Continuous View methods
 
         #region Book Flip view methods
+
         private async void bookFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var item in e.RemovedItems)
@@ -554,7 +548,6 @@ namespace ComicViewer
                 }
             }
         }
-
 
         private void bookFlipView_CleanUpVirtualizedItemEvent(object sender, CleanUpVirtualizedItemEventArgs e)
         {
@@ -582,13 +575,13 @@ namespace ComicViewer
 
             //}
         }
- #endregion
 
+        #endregion Book Flip view methods
 
         #region Page flip view methods
+
         private async void pageFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             foreach (var item in e.RemovedItems)
             {
                 ComicImageViewModel tempImage = item as ComicImageViewModel;
@@ -599,7 +592,6 @@ namespace ComicViewer
                     await tempImage.InvalidateData();
                 }
             }
-
         }
 
         private void pageFlipView_CleanUpVirtualizedItemEvent(object sender, CleanUpVirtualizedItemEventArgs e)
@@ -610,9 +602,8 @@ namespace ComicViewer
             {
                 image.UnsetImageData();
             }
-
         }
-        #endregion
 
+        #endregion Page flip view methods
     }
 }

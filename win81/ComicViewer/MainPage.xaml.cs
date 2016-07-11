@@ -17,8 +17,10 @@ namespace ComicViewer
     public sealed partial class MainPage : Page, INotifyPropertyChanged, IDisposable
     {
         //contains the command line options supplied by the Windows Shell
-        object userArgs = null;
-        bool disposed = false;
+        private object userArgs = null;
+
+        private bool disposed = false;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -27,7 +29,6 @@ namespace ComicViewer
             //force reload the image data from source and apply the effects
             EffectSettings.EffectChanged = async () =>
             {
-
                 try
                 {
                     Busy();
@@ -42,14 +43,13 @@ namespace ComicViewer
                 {
                     NotBusy();
                 }
-            
             };
 
             //setting changed event handler.
             //force reload the image data from source and apply the effects
 
-            AppSettings.AppSettingsChanged = async () => {
-
+            AppSettings.AppSettingsChanged = async () =>
+            {
                 try
                 {
                     Busy();
@@ -64,9 +64,8 @@ namespace ComicViewer
                 {
                     NotBusy();
                 }
-
             };
-            
+
             this.Loaded += MainPage_Loaded;
             this.Unloaded += MainPage_Unloaded;
             this.SizeChanged += MainPage_SizeChanged;
@@ -77,7 +76,8 @@ namespace ComicViewer
 
             this.DataContext = this;
         }
-        void MainPage_Unloaded(object sender, RoutedEventArgs e)
+
+        private void MainPage_Unloaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -91,9 +91,9 @@ namespace ComicViewer
             {
             }
         }
-        async void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
 
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
             while (true)
             {
                 Exception tempEx = null;
@@ -146,7 +146,6 @@ namespace ComicViewer
             }
         }
 
-        
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -166,6 +165,7 @@ namespace ComicViewer
                 ShowError("Komic Launch", ex);
             }
         }
+
         private void PageUnloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Window_SizeChanged;
@@ -191,6 +191,7 @@ namespace ComicViewer
                 //VisualStateManager.GoToState(this, state.State, transitions);
             }
         }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             ComicImageViewModel.PageSize = availableSize;
@@ -217,8 +218,7 @@ namespace ComicViewer
             }
         }
 
-        #endregion
-
+        #endregion INotifyPropertyChanged Members
 
         private async void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -234,12 +234,11 @@ namespace ComicViewer
             }
         }
 
-        
-
         public void Dispose()
         {
             Dispose(true);
         }
+
         // Protected implementation of Dispose pattern.
         private void Dispose(bool disposing)
         {
@@ -250,7 +249,7 @@ namespace ComicViewer
             {
                 // Free any other managed objects here.
                 //
-                if(navSync  != null)
+                if (navSync != null)
                 {
                     navSync.Dispose();
                 }

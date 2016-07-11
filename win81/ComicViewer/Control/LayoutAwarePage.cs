@@ -216,7 +216,7 @@ namespace ComicViewer
             }
         }
 
-        #endregion
+        #endregion Navigation support
 
         #region Visual state switching
 
@@ -328,7 +328,7 @@ namespace ComicViewer
             }
         }
 
-        #endregion
+        #endregion Visual state switching
 
         #region Process lifetime management
 
@@ -407,7 +407,7 @@ namespace ComicViewer
         {
         }
 
-        #endregion
+        #endregion Process lifetime management
 
         /// <summary>
         /// Implementation of IObservableMap that supports reentrancy for use as a default view
@@ -428,6 +428,7 @@ namespace ComicViewer
             }
 
             private Dictionary<K, V> _dictionary = new Dictionary<K, V>();
+
             public event MapChangedEventHandler<K, V> MapChanged;
 
             private void InvokeMapChanged(CollectionChange change, K key)

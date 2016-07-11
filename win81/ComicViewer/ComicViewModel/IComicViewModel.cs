@@ -11,6 +11,7 @@ namespace ComicViewer
     {
         ComicImageViewModelList Pages { get; }
         Size PageSize { get; }
+
         void Close();
     }
 }

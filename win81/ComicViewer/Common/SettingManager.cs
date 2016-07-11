@@ -11,8 +11,8 @@ namespace ComicViewer
     {
         private SettingManager()
         {
-
         }
+
         public static ApplicationDataContainer Inst
         {
             get
@@ -20,6 +20,7 @@ namespace ComicViewer
                 return ApplicationData.Current.LocalSettings; ;
             }
         }
+
         public static ApplicationDataContainer History
         {
             get
@@ -27,6 +28,7 @@ namespace ComicViewer
                 return ApplicationData.Current.LocalSettings.CreateContainer("History", ApplicationDataCreateDisposition.Always);
             }
         }
+
         public static ApplicationDataContainer Settings
         {
             get
@@ -41,9 +43,7 @@ namespace ComicViewer
 
             if (count > 100)
             {
-
             }
-
         }
     }
 }

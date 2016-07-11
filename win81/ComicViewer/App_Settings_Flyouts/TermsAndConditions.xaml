@@ -6,8 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ComicViewer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http:// schemas.openxmlformats.org/markup-compatibility/2006"
-    >
+    xmlns:mc="http:// schemas.openxmlformats.org/markup-compatibility/2006">
 
     <Page.Resources>
 
@@ -22,124 +21,124 @@
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="CloseFlyout" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource SettingBkButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource SnappedPageHeaderTextStyle}"/>
+            <Button x:Name="backButton" Click="CloseFlyout" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource SettingBkButtonStyle}" />
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource SnappedPageHeaderTextStyle}" />
         </Grid>
 
         <Grid Grid.Row="1" Margin="20,0">
             <ScrollViewer>
-            <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="14">
+                <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="14">
         		<Span>
-        			<Run Text="Copyright (c) 2013, Kannan K"/>
+        			<Run Text="Copyright (c) 2013, Kannan K" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="All rights reserved."/>
+        			<Run Text="All rights reserved." />
         		</Span>
-        		<LineBreak/>
-        		<LineBreak/>
+        		<LineBreak />
+        		<LineBreak />
         		<Span>
-        			<Run Text="Redistribution and use in source and binary forms, with or without"/>
+        			<Run Text="Redistribution and use in source and binary forms, with or without" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="modification, are permitted provided that the following conditions are met:"/>
+        			<Run Text="modification, are permitted provided that the following conditions are met:" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="    * Redistributions of source code must retain the above copyright"/>
+        			<Run Text="    * Redistributions of source code must retain the above copyright" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="      notice, this list of conditions and the following disclaimer."/>
+        			<Run Text="      notice, this list of conditions and the following disclaimer." />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="    * Redistributions in binary form must reproduce the above copyright"/>
+        			<Run Text="    * Redistributions in binary form must reproduce the above copyright" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="      notice, this list of conditions and the following disclaimer in the"/>
+        			<Run Text="      notice, this list of conditions and the following disclaimer in the" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="      documentation and/or other materials provided with the distribution."/>
+        			<Run Text="      documentation and/or other materials provided with the distribution." />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="    * Neither the name of the &lt;organization&gt; nor the"/>
+        			<Run Text="    * Neither the name of the &lt;organization&gt; nor the" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="      names of its contributors may be used to endorse or promote products"/>
+        			<Run Text="      names of its contributors may be used to endorse or promote products" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="      derived from this software without specific prior written permission."/>
+        			<Run Text="      derived from this software without specific prior written permission." />
         		</Span>
-        		<LineBreak/>
-        		<LineBreak/>
+        		<LineBreak />
+        		<LineBreak />
         		<Span>
-        			<Run Text="THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND"/>
+        			<Run Text="THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED"/>
+        			<Run Text="ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE"/>
+        			<Run Text="WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="DISCLAIMED. IN NO EVENT SHALL &lt;COPYRIGHT HOLDER&gt; BE LIABLE FOR ANY"/>
+        			<Run Text="DISCLAIMED. IN NO EVENT SHALL &lt;COPYRIGHT HOLDER&gt; BE LIABLE FOR ANY" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES"/>
+        			<Run Text="DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;"/>
+        			<Run Text="(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND"/>
+        			<Run Text="LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT"/>
+        			<Run Text="ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS"/>
+        			<Run Text="(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS" />
         		</Span>
-        		<LineBreak/>
+        		<LineBreak />
         		<Span>
-        			<Run Text="SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."/>
+        			<Run Text="SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
         		</Span>
-        		<LineBreak/>
-        		<Run/>
-            </TextBlock>
+        		<LineBreak />
+        		<Run />
+                </TextBlock>
             </ScrollViewer>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
-                <VisualState x:Name="FullScreenPortrait"/>
-                <VisualState x:Name="Snapped"/>
+                <VisualState x:Name="FullScreenLandscape" />
+                <VisualState x:Name="Filled" />
+                <VisualState x:Name="FullScreenPortrait" />
+                <VisualState x:Name="Snapped" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

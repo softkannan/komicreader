@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComicViewer.ComicModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -23,8 +23,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-
-using ComicViewer.ComicModel;
 
 namespace ComicViewer
 {
@@ -48,10 +46,12 @@ namespace ComicViewer
         public float ZoomFactor { get; set; }
         public static Size PageSize { get; set; }
         public ComicViewer.ComicModel.ComicImage Image { get; private set; }
+
         public virtual int PageNo
         {
             get { return pageNo; }
         }
+
         public ImageSource ImageData
         {
             get
@@ -86,11 +86,10 @@ namespace ComicViewer
                 task.ContinueWith(async (taskArg) =>
                 {
                     await InvalidateData();
-
                 }, TaskScheduler.Current);
-
             }
         }
+
         public async Task InvalidateData()
         {
             var dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
@@ -102,11 +101,11 @@ namespace ComicViewer
                 InternalPropertyChanged("Stretch");
             });
 
-           await dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                InternalPropertyChanged("ImageSrc");
-                InternalPropertyChanged("ImageData");
-            });
+            await dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+             {
+                 InternalPropertyChanged("ImageSrc");
+                 InternalPropertyChanged("ImageData");
+             });
         }
 
         public void UpdateImageAttribute()
@@ -136,6 +135,7 @@ namespace ComicViewer
             }
 
             #region Image Size (Zoom Calculation)
+
             switch (PanelMode)
             {
                 case ComicViewer.PanelMode.DoublePage:
@@ -144,42 +144,50 @@ namespace ComicViewer
                         case ZoomType.Fit:
                             measureChildSize = new Size(availableSize.Width / 2, availableSize.Height);
                             break;
+
                         case ZoomType.FreeForm:
                         case ZoomType.FitWidth:
                             measureChildSize = new Size(availableSize.Width / 2, Double.NaN);
                             break;
+
                         case ZoomType.Custom:
                             var tempZoomFactor = Math.Abs(ZoomFactor);
                             measureChildSize = new Size((availableSize.Width / 2) * tempZoomFactor, newHeight * tempZoomFactor);
                             break;
                     }
                     break;
+
                 case ComicViewer.PanelMode.SinglePage:
                     switch (Zoom)
                     {
                         case ZoomType.Fit:
                             measureChildSize = availableSize;
                             break;
+
                         case ZoomType.FreeForm:
                         case ZoomType.FitWidth:
                             measureChildSize = new Size(availableSize.Width, Double.NaN);
                             break;
+
                         case ZoomType.Custom:
                             var tempZoomFactor = Math.Abs(ZoomFactor);
                             measureChildSize = new Size(availableSize.Width * tempZoomFactor, newHeight * tempZoomFactor);
                             break;
                     }
                     break;
+
                 case ComicViewer.PanelMode.ContniousPage:
                     switch (Zoom)
                     {
                         case ZoomType.Fit:
                             measureChildSize = availableSize;
                             break;
+
                         case ZoomType.FreeForm:
                         case ZoomType.FitWidth:
                             measureChildSize = new Size(availableSize.Width, Double.NaN);
                             break;
+
                         case ZoomType.Custom:
                             var tempZoomFactor = Math.Abs(ZoomFactor);
                             measureChildSize = new Size(availableSize.Width * tempZoomFactor, Double.NaN);
@@ -187,11 +195,13 @@ namespace ComicViewer
                     }
                     break;
             }
-            #endregion
+
+            #endregion Image Size (Zoom Calculation)
 
             Width = measureChildSize.Width;
             Height = measureChildSize.Height;
         }
+
         public void UnsetImageData()
         {
             if (Image != null)
@@ -203,11 +213,11 @@ namespace ComicViewer
             {
                 Next.UnsetImageData();
             }
-
         }
+
         public async Task<ImageSource> GetImageAsync()
         {
-            if(Image.IsImagePopulated)
+            if (Image.IsImagePopulated)
             {
                 return Image.ImageData;
             }
@@ -223,10 +233,9 @@ namespace ComicViewer
 
             return retVal;
         }
-        
-        public ComicImageViewModel(ComicImageViewModel image):this(image.Image,image.PageNo)
+
+        public ComicImageViewModel(ComicImageViewModel image) : this(image.Image, image.PageNo)
         {
-            
         }
 
         public ComicImageViewModel(ComicImage data, int pageNo)
@@ -247,6 +256,6 @@ namespace ComicViewer
             }
         }
 
-        #endregion
+        #endregion INotifyPropertyChanged Members
     }
 }

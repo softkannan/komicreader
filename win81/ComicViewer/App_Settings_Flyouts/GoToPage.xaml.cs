@@ -22,7 +22,7 @@ namespace ComicViewer
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class GoToPage :Page
+    public sealed partial class GoToPage : Page
     {
         public GoToPage()
         {
@@ -31,9 +31,9 @@ namespace ComicViewer
 
         public Func<int, Task> GotoPage { get; set; } = null;
 
-        int currentPage = 1;
-        List<ComicImageViewModel> pages;
-        List<int> bookmarks;
+        private int currentPage = 1;
+        private List<ComicImageViewModel> pages;
+        private List<int> bookmarks;
 
         private void UpdatePages()
         {
@@ -61,10 +61,9 @@ namespace ComicViewer
             //txtTotalPageNo.Text = lastPage.ToString();
 
             gotoPanel.ItemsSource = tempList;
-
         }
 
-        public void SetPages(List<ComicImageViewModel> argPages,List<int> argBookmarks,int argCurrentPage)
+        public void SetPages(List<ComicImageViewModel> argPages, List<int> argBookmarks, int argCurrentPage)
         {
             this.pages = argPages;
             this.bookmarks = argBookmarks;
@@ -73,7 +72,7 @@ namespace ComicViewer
             UpdatePages();
         }
 
-        void bttn_Click(object sender, RoutedEventArgs e)
+        private void bttn_Click(object sender, RoutedEventArgs e)
         {
             CloseFlyout(sender, e);
 
@@ -86,7 +85,7 @@ namespace ComicViewer
 
             PageLinkViewModel tempImage = tempBttn.Tag as PageLinkViewModel;
 
-            if(tempImage == null)
+            if (tempImage == null)
             {
                 return;
             }
@@ -124,7 +123,6 @@ namespace ComicViewer
         {
             if (this.Parent is Popup)
                 (this.Parent as Popup).IsOpen = false;
-
         }
 
         private void bttnMarkBookmark_Click(object sender, RoutedEventArgs e)

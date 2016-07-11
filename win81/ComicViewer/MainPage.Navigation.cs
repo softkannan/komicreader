@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Graphics.Display;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
-using Windows.Graphics.Display;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace ComicViewer
@@ -18,21 +18,23 @@ namespace ComicViewer
     public partial class MainPage
     {
 #if DEBUG
-        const int NAVIGATION_OPERATION_WAIT_TIME = 30;
+        private const int NAVIGATION_OPERATION_WAIT_TIME = 30;
 #else
         const int NAVIGATION_OPERATION_WAIT_TIME = 10;
 #endif
-        int totalPage = 0;
+        private int totalPage = 0;
         private double pageViewHeight = 0;
         private double pageViewWidth = 0;
-        SemaphoreSlim navSync = new SemaphoreSlim(1);
-        ComicImageViewModel continousViewJumpToPage = null;
-        bool IgnoreZoomEvent = false;
-        Popup gotoPopup = null;
+        private SemaphoreSlim navSync = new SemaphoreSlim(1);
+        private ComicImageViewModel continousViewJumpToPage = null;
+        private bool IgnoreZoomEvent = false;
+        private Popup gotoPopup = null;
 
         #region Page attributes
+
         public float ZoomFactor { get; set; }
         public ComicImageViewModelList CurrentSource { get; set; }
+
         public int LastPage
         {
             get
@@ -45,6 +47,7 @@ namespace ComicViewer
                 InternalPropertyChanged("TotalPage");
             }
         }
+
         public double PageViewHeight
         {
             get
@@ -57,6 +60,7 @@ namespace ComicViewer
                 InternalPropertyChanged("PageViewHeight");
             }
         }
+
         public double PageViewWidth
         {
             get
@@ -69,10 +73,12 @@ namespace ComicViewer
                 InternalPropertyChanged("PageViewWidth");
             }
         }
-        #endregion
+
+        #endregion Page attributes
 
         #region Page Navigation methods
-        void GotoLastPage()
+
+        private void GotoLastPage()
         {
             if (CurrentSource != null)
             {
@@ -83,7 +89,8 @@ namespace ComicViewer
                 }
             }
         }
-        void GotoFirstPage()
+
+        private void GotoFirstPage()
         {
             if (CurrentSource != null)
             {
@@ -95,14 +102,13 @@ namespace ComicViewer
                 }
             }
         }
-        void Next()
+
+        private void Next()
         {
             if (CurrentSource != null)
             {
                 if (navSync.Wait(NAVIGATION_OPERATION_WAIT_TIME))
                 {
-                    
-
                     if (PanelMode == ComicViewer.PanelMode.DoublePage)
                     {
                         CurrentPage += 2;
@@ -120,7 +126,8 @@ namespace ComicViewer
                 }
             }
         }
-        void Back()
+
+        private void Back()
         {
             if (CurrentSource != null)
             {
@@ -143,11 +150,11 @@ namespace ComicViewer
                 }
             }
         }
-        #endregion
+
+        #endregion Page Navigation methods
 
         public async Task ShowPage()
         {
-
             try
             {
                 if (navSync.Wait(NAVIGATION_OPERATION_WAIT_TIME))
@@ -184,7 +191,7 @@ namespace ComicViewer
                                         //apply calculated zoom factor
                                         if (frame != null)
                                         {
-                                            pageView.ChangeView(null,null,frame.ZoomFactor);
+                                            pageView.ChangeView(null, null, frame.ZoomFactor);
                                         }
                                         //set the image data
                                         pageView.DataContext = frame;
@@ -197,12 +204,12 @@ namespace ComicViewer
                                     bttnNext.IsEnabled = true;
                                 }
                                 break;
+
                             case ComicViewer.PanelMode.DoublePage:
                                 {
                                     //check flip view enabled
                                     if (AppSettings.FlipView)
                                     {
-
                                         CurrentSource = new ComicImageViewModelList();
 
                                         ComicImageViewModel firstImage = null;
@@ -233,7 +240,6 @@ namespace ComicViewer
                                             {
                                                 CurrentSource.Add(Pages[index]);
                                             }
-                                            
                                         }
 
                                         bookFlipView.ItemsSource = new ComicImageListViewModel(CurrentSource);
@@ -241,7 +247,6 @@ namespace ComicViewer
                                         bookFlipView.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
                                         UpdateFlipPages();
-
                                     }
                                     else
                                     {
@@ -279,7 +284,6 @@ namespace ComicViewer
                                         page1.Height = Double.NaN;
                                         page2.Width = Double.NaN;
                                         page2.Height = Double.NaN;
-                                   
 
                                         if (frame1 != null)
                                         {
@@ -307,6 +311,7 @@ namespace ComicViewer
                                     bttnNext.IsEnabled = true;
                                 }
                                 break;
+
                             case ComicViewer.PanelMode.ContniousPage:
                                 {
                                     BringupContinuousViewUpdateUI();
@@ -320,7 +325,6 @@ namespace ComicViewer
                                     continuousView.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
                                     continuousView.UpdateLayout();
-
                                 }
                                 break;
                         }
@@ -334,13 +338,12 @@ namespace ComicViewer
             {
                 navSync.Release();
             }
-
         }
 
         #region Update Settings methods
+
         public void UpdateComicSettings()
         {
-
             var tempEffect = (from t in EffectSettings where t.IsEnabled == true select t).ToList();
 
             Stretch tempStretch = Stretch.Uniform;
@@ -366,6 +369,7 @@ namespace ComicViewer
                 UpdateScrollSettings(item);
             });
         }
+
         private void UpdateScrollSettings(ComicImageViewModel image)
         {
             switch (PanelMode)
@@ -382,6 +386,7 @@ namespace ComicViewer
                                 image.ZoomMode = ZoomMode.Disabled;
                                 image.ZoomFactor = 1;
                                 break;
+
                             case ZoomType.Custom:
                             case ZoomType.FitWidth:
                                 image.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
@@ -391,6 +396,7 @@ namespace ComicViewer
                                 image.ZoomMode = ZoomMode.Disabled;
                                 image.ZoomFactor = 1;
                                 break;
+
                             case ZoomType.FreeForm:
                                 image.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
                                 image.HorizontalScrollMode = ScrollMode.Auto;
@@ -399,10 +405,10 @@ namespace ComicViewer
                                 image.ZoomMode = ZoomMode.Enabled;
                                 image.ZoomFactor = 1;
                                 break;
-
                         }
                     }
                     break;
+
                 case ComicViewer.PanelMode.SinglePage:
                     {
                         switch (Zoom)
@@ -415,6 +421,7 @@ namespace ComicViewer
                                 image.ZoomMode = ZoomMode.Disabled;
                                 image.ZoomFactor = 1;
                                 break;
+
                             case ZoomType.Custom:
                             case ZoomType.FitWidth:
                                 image.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
@@ -424,6 +431,7 @@ namespace ComicViewer
                                 image.ZoomMode = ZoomMode.Disabled;
                                 image.ZoomFactor = 1;
                                 break;
+
                             case ZoomType.FreeForm:
                                 image.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
                                 image.HorizontalScrollMode = ScrollMode.Auto;
@@ -432,15 +440,16 @@ namespace ComicViewer
                                 image.ZoomMode = ZoomMode.Enabled;
                                 image.ZoomFactor = 1;
                                 break;
-
                         }
                     }
                     break;
             }
         }
-        #endregion
+
+        #endregion Update Settings methods
 
         #region Update Page methods
+
         private void UpdateRotate()
         {
             var currVal = Rotation;
@@ -450,18 +459,21 @@ namespace ComicViewer
                 case RotatePage.RotateNormal:
                     Rotation = RotatePage.Rotate90;
                     break;
+
                 case RotatePage.Rotate90:
                     Rotation = RotatePage.Rotate180;
                     break;
+
                 case RotatePage.Rotate180:
                     Rotation = RotatePage.Rotate270;
                     break;
+
                 case RotatePage.Rotate270:
                     Rotation = RotatePage.RotateNormal;
                     break;
             }
-
         }
+
         private void UpdateZoomStatus()
         {
             IgnoreZoomEvent = true;
@@ -476,9 +488,11 @@ namespace ComicViewer
                 case ZoomType.FitWidth:
                     bttnFitWidth.IsChecked = true;
                     break;
+
                 case ZoomType.Fit:
                     bttnFit.IsChecked = true;
                     break;
+
                 case ZoomType.FreeForm:
                     bttnFreeForm.IsChecked = true;
                     break;
@@ -486,6 +500,7 @@ namespace ComicViewer
 
             IgnoreZoomEvent = false;
         }
+
         private void UpdatePanelModeStatus()
         {
             IgnoreZoomEvent = true;
@@ -499,9 +514,11 @@ namespace ComicViewer
                 case ComicViewer.PanelMode.SinglePage:
                     bttnSinglePage.IsChecked = true;
                     break;
+
                 case ComicViewer.PanelMode.DoublePage:
                     bttnTwoPage.IsChecked = true;
                     break;
+
                 case ComicViewer.PanelMode.ContniousPage:
                     bttnContinuousPage.IsChecked = true;
                     break;
@@ -509,6 +526,7 @@ namespace ComicViewer
 
             IgnoreZoomEvent = false;
         }
+
         private void UpdateFlipPages()
         {
             if (PanelMode == ComicViewer.PanelMode.SinglePage && AppSettings.FlipView)
@@ -544,6 +562,7 @@ namespace ComicViewer
                 bookFlipView.UpdateLayout();
             }
         }
+
         private async Task PerformFlipPageAt(Point position)
         {
             try
@@ -615,6 +634,7 @@ namespace ComicViewer
                 ShowError("Page Navigation", ex);
             }
         }
+
         private void UpdateCurrentPage()
         {
             if (PanelMode == ComicViewer.PanelMode.ContniousPage)
@@ -674,9 +694,10 @@ namespace ComicViewer
             }
         }
 
-        #endregion
+        #endregion Update Page methods
 
         #region Page View methods
+
         private void BringupContinuousViewUpdateUI()
         {
             continuousView.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -728,7 +749,7 @@ namespace ComicViewer
             bookView.ZoomMode = item.ZoomMode;
             twoPageStackPanel.FlowDirection = item.FlowDirection;
 
-            bookView.ChangeView(null,null,item.ZoomFactor);
+            bookView.ChangeView(null, null, item.ZoomFactor);
         }
 
         private void BringupSinglePageViewUpdateUI()
@@ -759,7 +780,7 @@ namespace ComicViewer
                 bttnZoomOut.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
-#endregion
 
+        #endregion Page View methods
     }
 }

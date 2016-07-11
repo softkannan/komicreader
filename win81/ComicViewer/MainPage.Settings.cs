@@ -10,7 +10,7 @@ namespace ComicViewer
 {
     public partial class MainPage
     {
-        ComicBookSetting currentSetting = null;
+        private ComicBookSetting currentSetting = null;
 
         public EffectSettings EffectSettings
         {
@@ -24,16 +24,15 @@ namespace ComicViewer
 
         public ComicAppSetting AppSettings
         {
-            get {
-
+            get
+            {
                 App app = Application.Current as App;
 
                 return app.AppSettings;
-            
             }
         }
 
-        string FileName
+        private string FileName
         {
             get
             {
@@ -49,7 +48,6 @@ namespace ComicViewer
         {
             get
             {
-
                 if (currentSetting != null)
                 {
                     return currentSetting.Bookmarks;
@@ -62,7 +60,6 @@ namespace ComicViewer
         {
             get
             {
-
                 if (currentSetting != null)
                 {
                     return currentSetting.CurrentPage;
@@ -80,7 +77,7 @@ namespace ComicViewer
             }
         }
 
-        RotatePage Rotation
+        private RotatePage Rotation
         {
             get
             {
@@ -97,11 +94,10 @@ namespace ComicViewer
                     currentSetting.PreviousRotate = currentSetting.Rotate;
                     currentSetting.Rotate = value;
                 }
-
             }
         }
 
-        PanelMode PanelMode
+        private PanelMode PanelMode
         {
             get
             {
@@ -121,7 +117,7 @@ namespace ComicViewer
             }
         }
 
-        ZoomType Zoom
+        private ZoomType Zoom
         {
             get
             {
@@ -138,15 +134,14 @@ namespace ComicViewer
                     currentSetting.PreviousZoom = currentSetting.Zoom;
                     currentSetting.Zoom = value;
                 }
-
             }
         }
 
-        IArchive comicFileReader = null;
+        private IArchive comicFileReader = null;
 
         public ComicImageViewModelList Pages { get; set; }
 
-        void SaveSettings(string fileName)
+        private void SaveSettings(string fileName)
         {
             if (currentSetting == null)
             {
@@ -155,7 +150,7 @@ namespace ComicViewer
             SettingManager.History.Values[Path.GetFileNameWithoutExtension(fileName)] = currentSetting.Setting;
         }
 
-        void RestoreSettings(string fileName)
+        private void RestoreSettings(string fileName)
         {
             object tempSetting;
             if (SettingManager.History.Values.TryGetValue(Path.GetFileNameWithoutExtension(fileName), out tempSetting))
@@ -170,7 +165,6 @@ namespace ComicViewer
                 currentSetting.PanelMode = AppSettings.PanelMode;
             }
         }
-
     }
 
     public class EffectSetting

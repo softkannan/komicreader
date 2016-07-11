@@ -14,7 +14,7 @@
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">GoTo...</x:String>
         <DataTemplate x:Key="GotoPageTemplate">
-            <Button Content="{Binding Path=DisplayName}" Click="bttn_Click" Height="50" Width="75" Tag="{Binding}" Background="{Binding Path=BackColor}"  />
+            <Button Content="{Binding Path=DisplayName}" Click="bttn_Click" Height="50" Width="75" Tag="{Binding}" Background="{Binding Path=BackColor}" />
         </DataTemplate>
     </Page.Resources>
 
@@ -25,18 +25,18 @@
     -->
     <Grid x:Name="gotoGrid" Style="{StaticResource LayoutRootStyle}" Background="#E51D1D1D">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Left" Height="95">
-                <Button x:Name="backButton" Click="CloseFlyout" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource SettingBkButtonStyle}"/>
-                <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource SnappedPageHeaderTextStyle}"/>
+                <Button x:Name="backButton" Click="CloseFlyout" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource SettingBkButtonStyle}" />
+                <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource SnappedPageHeaderTextStyle}" />
             </StackPanel>
             <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Height="95">
                 <TextBlock VerticalAlignment="Center" x:Name="txtCurrentPageNo" FontSize="24">10</TextBlock>
@@ -64,10 +64,10 @@
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
-                <VisualState x:Name="FullScreenPortrait"/>
-                <VisualState x:Name="Snapped"/>
+                <VisualState x:Name="FullScreenLandscape" />
+                <VisualState x:Name="Filled" />
+                <VisualState x:Name="FullScreenPortrait" />
+                <VisualState x:Name="Snapped" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

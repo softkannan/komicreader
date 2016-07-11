@@ -41,10 +41,12 @@ namespace ComicViewer
         {
             get { return m_images; }
         }
+
         public ComicImageListViewModel(ComicImageViewModelList images)
         {
             this.m_images = images;
         }
+
         /// <summary>
         /// check given value is present in the image list
         /// </summary>
@@ -73,7 +75,6 @@ namespace ComicViewer
         {
             get
             {
-
                 var retVal = m_images[index];
 
                 if (!retVal.Image.IsImagePopulated)
@@ -88,6 +89,7 @@ namespace ComicViewer
                 throw new NotImplementedException();
             }
         }
+
         /// <summary>
         /// Resolves image data for given page number
         /// </summary>
@@ -115,7 +117,6 @@ namespace ComicViewer
             MessageDialog message = new MessageDialog(string.Format("{0} error : {1}", title, ex.Message), "Error");
             await message.ShowAsync();
         }
-
 
         #region ILists's Don't Care Methods
 
@@ -178,6 +179,7 @@ namespace ComicViewer
         {
             throw new NotImplementedException();
         }
-        #endregion
+
+        #endregion ILists's Don't Care Methods
     }
 }

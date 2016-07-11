@@ -11,6 +11,7 @@ namespace ComicViewer
         Single,
         Double
     }
+
     public enum AutoRotationPreference
     {
         Off,
@@ -18,6 +19,7 @@ namespace ComicViewer
         PreferLandScape,
         PreferPortrait
     }
+
     public enum PageLinkType
     {
         Page,
@@ -33,7 +35,6 @@ namespace ComicViewer
         Contrast,
         Bakumatsu,
         Posterize
-
     }
 
     public enum PageResizeMode
@@ -54,6 +55,7 @@ namespace ComicViewer
         Fit,
         FreeForm
     }
+
     /// <summary>
     /// Layout Mode
     /// </summary>
@@ -63,6 +65,7 @@ namespace ComicViewer
         ContniousPage,
         DoublePage
     }
+
     public enum RotatePage
     {
         RotateNormal,

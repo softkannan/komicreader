@@ -31,9 +31,9 @@ namespace ComicViewer
     /// </summary>
     sealed partial class App : Application
     {
-        double settingsWidth = 370;
-        Popup settingsPopup;
-       
+        private double settingsWidth = 370;
+        private Popup settingsPopup;
+
         /// <summary>
         /// Initializes the singleton Application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -45,27 +45,26 @@ namespace ComicViewer
 
             EffectSettings = new EffectSettings();
 
-
             EffectSettings.Add(new EffectSetting() { Name = "Grey", HasValue = false, IsEnabled = false, Type = ImageEffect.Grey });
             EffectSettings.Add(new EffectSetting() { Name = "AutoColoring", HasValue = false, IsEnabled = false, Type = ImageEffect.AutoColoring });
             EffectSettings.Add(new EffectSetting() { Name = "Bakumatsu", HasValue = false, IsEnabled = false, Type = ImageEffect.Bakumatsu });
 
             EffectSettings.Add(new EffectSetting() { Name = "Contrast", HasValue = true, IsEnabled = false, Value = 0.5, Type = ImageEffect.Contrast });
-            EffectSettings.Add(new EffectSetting() { Name = "Posterize", HasValue = true, IsEnabled = false, Value = 0, Type= ImageEffect.Posterize });
+            EffectSettings.Add(new EffectSetting() { Name = "Posterize", HasValue = true, IsEnabled = false, Value = 0, Type = ImageEffect.Posterize });
 
             RestoreSettings();
         }
 
         public EffectSettings EffectSettings { get; private set; }
 
-        ComicAppSetting appSettings = null;
+        private ComicAppSetting appSettings = null;
 
         public ComicAppSetting AppSettings
         {
             get { return appSettings; }
         }
 
-        void RestoreSettings()
+        private void RestoreSettings()
         {
             object tempSetting;
             if (SettingManager.Settings.Values.TryGetValue("Settings", out tempSetting))
@@ -86,7 +85,6 @@ namespace ComicViewer
             // just ensure that the window is active
             if (rootFrame == null)
             {
-
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
@@ -122,7 +120,6 @@ namespace ComicViewer
             // Ensure the current window is active
             Window.Current.Activate();
         }
-
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -173,7 +170,7 @@ namespace ComicViewer
             SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
         }
 
-        void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
             UICommandInvokedHandler handler = new UICommandInvokedHandler(onSettingsCommand);
 
@@ -211,9 +208,11 @@ namespace ComicViewer
                     settingPage = new AboutUs();
                     tempSettingsWidth = 700;
                     break;
+
                 case "CU":
                     settingPage = new ContactUs();
                     break;
+
                 case "SE":
                     {
                         var tempSettings = new Settings();
@@ -222,10 +221,12 @@ namespace ComicViewer
                         tempSettingsWidth = 500;
                     }
                     break;
+
                 case "TC":
                     settingPage = new TermsAndConditions();
                     tempSettingsWidth = 700;
                     break;
+
                 case "EF":
                     {
                         var tempEffPage = new EffectsPage();
@@ -235,7 +236,6 @@ namespace ComicViewer
                     break;
             }
 
-
             settingsPopup.Width = tempSettingsWidth;
             settingsPopup.Height = windowBounds.Height;
 
@@ -243,7 +243,6 @@ namespace ComicViewer
             settingsPopup.ChildTransitions = new TransitionCollection();
             settingsPopup.ChildTransitions.Add(new PaneThemeTransition()
             {
-
                 Edge = (SettingsPane.Edge == SettingsEdgeLocation.Right) ?
                 EdgeTransitionLocation.Right :
                 EdgeTransitionLocation.Left
@@ -264,7 +263,7 @@ namespace ComicViewer
             settingsPopup.IsOpen = true;
         }
 
-        void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
         {
             if (e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.Deactivated)
             {
@@ -272,11 +271,10 @@ namespace ComicViewer
             }
         }
 
-        void settingsPopup_Closed(object sender, object e)
+        private void settingsPopup_Closed(object sender, object e)
         {
             Window.Current.Activated -= Current_Activated;
         }
-
 
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
@@ -305,8 +303,8 @@ namespace ComicViewer
         //    var previousContent = Window.Current.Content;
         //    var frame = previousContent as Frame;
 
-        //    // If the app does not contain a top-level frame, it is possible that this 
-        //    // is the initial launch of the app. Typically this method and OnLaunched 
+        //    // If the app does not contain a top-level frame, it is possible that this
+        //    // is the initial launch of the app. Typically this method and OnLaunched
         //    // in App.xaml.cs can call a common method.
         //    if (frame == null)
         //    {
@@ -341,7 +339,5 @@ namespace ComicViewer
         /// Invoked when the application is activated to display search results.
         /// </summary>
         /// <param name="args">Details about the activation request.</param>
-
-
     }
 }

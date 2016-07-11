@@ -28,13 +28,13 @@ namespace ComicViewer
             this.InitializeComponent();
         }
 
-        EffectSettings localSettings = null;
+        private EffectSettings localSettings = null;
 
         public EffectSettings Settings
         {
             get { return localSettings; }
-            set {
-
+            set
+            {
                 localSettings = value;
                 UpdateControls();
             }
@@ -51,7 +51,6 @@ namespace ComicViewer
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            
         }
 
         /// <summary>
@@ -64,7 +63,6 @@ namespace ComicViewer
         {
         }
 
-
         private void CloseFlyout(object sender, RoutedEventArgs e)
         {
             if (this.Parent is Popup)
@@ -73,7 +71,7 @@ namespace ComicViewer
             SettingsPane.Show();
         }
 
-        bool IgnoreEvent = false;
+        private bool IgnoreEvent = false;
 
         private void UpdateControls()
         {
@@ -85,16 +83,20 @@ namespace ComicViewer
                     case ImageEffect.Grey:
                         chkGrey.IsChecked = item.IsEnabled;
                         break;
+
                     case ImageEffect.AutoColoring:
                         chkAutoColoring.IsChecked = item.IsEnabled;
                         break;
+
                     case ImageEffect.Bakumatsu:
                         chkBakumatsu.IsChecked = item.IsEnabled;
                         break;
+
                     case ImageEffect.Contrast:
                         chkContrast.IsChecked = item.IsEnabled;
                         valueContrast.Value = item.Value;
                         break;
+
                     case ImageEffect.Posterize:
                         chkPosterize.IsChecked = item.IsEnabled;
                         valuePosterize.Value = item.Value;

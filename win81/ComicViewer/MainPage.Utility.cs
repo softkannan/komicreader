@@ -26,7 +26,6 @@ namespace ComicViewer
 
         private void ReleaseImage()
         {
-
             if (bookView.DataContext != null)
             {
                 page1.Source = null;
@@ -51,7 +50,6 @@ namespace ComicViewer
                 pageFlipView.ItemsSource = null;
             }
         }
-
 
         private void Busy()
         {
@@ -80,7 +78,5 @@ namespace ComicViewer
                 comicGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
         }
-
-
     }
 }

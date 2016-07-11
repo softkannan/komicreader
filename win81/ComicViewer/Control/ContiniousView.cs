@@ -10,9 +10,9 @@ using Windows.UI.Xaml.Media;
 
 namespace ComicViewer
 {
-    public class ContiniousView:ListView
+    public class ContiniousView : ListView
     {
-        ScrollViewer InternalScrollViewer { get; set; }
+        private ScrollViewer InternalScrollViewer { get; set; }
 
         protected override Windows.Foundation.Size MeasureOverride(Windows.Foundation.Size availableSize)
         {
@@ -28,18 +28,16 @@ namespace ComicViewer
                 if (e.Key == Windows.System.VirtualKey.Up)
                 {
                     e.Handled = true;
-                    this.InternalScrollViewer.ChangeView(null,this.InternalScrollViewer.VerticalOffset - 0.05,null);
+                    this.InternalScrollViewer.ChangeView(null, this.InternalScrollViewer.VerticalOffset - 0.05, null);
                 }
                 else if (e.Key == Windows.System.VirtualKey.Down)
                 {
                     e.Handled = true;
-                    
-                    this.InternalScrollViewer.ChangeView(null, this.InternalScrollViewer.VerticalOffset + 0.05,null);
+
+                    this.InternalScrollViewer.ChangeView(null, this.InternalScrollViewer.VerticalOffset + 0.05, null);
                 }
             }
             base.OnKeyDown(e);
         }
-
-        
     }
 }

@@ -22,17 +22,17 @@
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="CloseFlyout" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource SettingBkButtonStyle}"/>
+            <Button x:Name="backButton" Click="CloseFlyout" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource SettingBkButtonStyle}" />
             <TextBlock x:Name="pageTitle" Grid.Column="1" Style="{StaticResource SnappedPageHeaderTextStyle}">
                 Effects <Span FontStyle="Italic"> [Experimental] </Span>
             </TextBlock>
@@ -91,10 +91,10 @@
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
-                <VisualState x:Name="FullScreenPortrait"/>
-                <VisualState x:Name="Snapped"/>
+                <VisualState x:Name="FullScreenLandscape" />
+                <VisualState x:Name="Filled" />
+                <VisualState x:Name="FullScreenPortrait" />
+                <VisualState x:Name="Snapped" />
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>

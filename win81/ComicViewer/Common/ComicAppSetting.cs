@@ -23,7 +23,7 @@ namespace ComicViewer
             }
         }
 
-        #endregion
+        #endregion INotifyPropertyChanged Members
 
         public Func<Task> AppSettingsChanged { get; set; }
 
@@ -59,8 +59,6 @@ namespace ComicViewer
         {
             SettingManager.Settings.Values["Settings"] = this.Setting;
         }
-
-
 
         public bool RightToLeft { get; set; }
         public float ZoomMin { get; set; }
@@ -110,7 +108,7 @@ namespace ComicViewer
             retVal["AutoRotation"] = (int)AutoRotation;
             retVal["CachePages"] = CachePages;
             retVal["FlipView"] = FlipView;
-            retVal["PanelMode"] = (int) PanelMode;
+            retVal["PanelMode"] = (int)PanelMode;
             retVal["MouseFlipType"] = (int)MouseFlipType;
 
             return retVal;

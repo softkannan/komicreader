@@ -30,13 +30,13 @@ namespace ComicViewer
             this.InitializeComponent();
         }
 
-        ComicAppSetting appSettings = null;
+        private ComicAppSetting appSettings = null;
 
         public ComicAppSetting AppSettings
         {
             get { return appSettings; }
-            set {
-
+            set
+            {
                 appSettings = value;
                 UpdateControls();
             }
@@ -53,7 +53,6 @@ namespace ComicViewer
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            
         }
 
         /// <summary>
@@ -66,7 +65,6 @@ namespace ComicViewer
         {
         }
 
-
         private void CloseFlyout(object sender, RoutedEventArgs e)
         {
             if (this.Parent is Popup)
@@ -75,7 +73,7 @@ namespace ComicViewer
             SettingsPane.Show();
         }
 
-        bool IgnoreEvent = false;
+        private bool IgnoreEvent = false;
 
         private void UpdateControls()
         {
@@ -139,7 +137,7 @@ namespace ComicViewer
             {
                 bool isFlipView = chkFlipView.IsChecked ?? true;
 
-               bool isRightToLeft = chkRightToLeft.IsChecked ?? false;
+                bool isRightToLeft = chkRightToLeft.IsChecked ?? false;
 
                 if (!txtZoomStep.ValidateMinMax(0.01, 0.5))
                 {
@@ -147,29 +145,28 @@ namespace ComicViewer
                     return;
                 }
 
-               float tempZoomStep = txtZoomStep.Text.ParseText(0.1f);
+                float tempZoomStep = txtZoomStep.Text.ParseText(0.1f);
 
-               // AppSettings.AutoRotation = (AutoRotationPreference)comboAutoRotation.SelectedIndex;
+                // AppSettings.AutoRotation = (AutoRotationPreference)comboAutoRotation.SelectedIndex;
 
-               AppSettings.PanelMode = (PanelMode) comboView.SelectedIndex;
+                AppSettings.PanelMode = (PanelMode)comboView.SelectedIndex;
 
                 //AppSettings.CachePages = ParseValue(txtCachePages.Text, 5);
 
-               AppSettings.MouseFlipType = (MousePageFlipType)comboMouseFlipType.SelectedIndex;
+                AppSettings.MouseFlipType = (MousePageFlipType)comboMouseFlipType.SelectedIndex;
 
+                AppSettings.RightToLeft = isRightToLeft;
+                AppSettings.ZoomStep = tempZoomStep;
+                AppSettings.FlipView = isFlipView;
 
-               AppSettings.RightToLeft = isRightToLeft;
-               AppSettings.ZoomStep = tempZoomStep;
-               AppSettings.FlipView = isFlipView;
+                AppSettings.SaveSettings();
 
-               AppSettings.SaveSettings();
+                if (AppSettings.AppSettingsChanged != null)
+                {
+                    await AppSettings.AppSettingsChanged();
 
-               if (AppSettings.AppSettingsChanged != null)
-               {
-                   await AppSettings.AppSettingsChanged();
-
-                   ShowMessage("Successfully Settings Applied.");
-               }
+                    ShowMessage("Successfully Settings Applied.");
+                }
             }
         }
 
@@ -182,10 +179,6 @@ namespace ComicViewer
 
             txtZoomStep.ValidateMinMax(0.01, 0.5);
         }
-
-        
-
-       
 
         //private void txtCachePages_TextChanged(object sender, TextChangedEventArgs e)
         //{
