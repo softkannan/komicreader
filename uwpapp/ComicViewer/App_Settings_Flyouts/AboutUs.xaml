@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Name="pageRoot"
+    x:Class="ComicViewer.AboutUs"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ComicViewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <TextBlock FontSize="18" TextWrapping="Wrap">
+            	<Run Text="Kannan K," />
+            	<LineBreak />
+            	<Run Text="Developer." />
+            	<LineBreak />
+            	<Run />
+            	<LineBreak />
+            	<Run Text="Likes to read comics. " />
+            	<LineBreak />
+            	<Run />
+            	<LineBreak />
+            	<Run Text="This software uses the following libraries. Thanks to all of their hard work." />
+            	<LineBreak />
+            	<Run />
+            	<LineBreak />
+            	<Run Text="https://github.com/CH3COOH/WriteableBitmapEffector/" />
+            	<LineBreak />
+            	<Run />
+            	<LineBreak />
+            	<Run Text="http://writeablebitmapex.codeplex.com/" />
+            	<LineBreak />
+            	<Run />
+            	<LineBreak />
+            	<Run Text="http://sharpcompress.codeplex.com/" />
+            	<LineBreak />
+            	<Run />
+        </TextBlock>
+    </Grid>
+</UserControl>

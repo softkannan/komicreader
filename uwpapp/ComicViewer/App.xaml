@@ -1,0 +1,26 @@
+﻿<Application
+    x:Class="ComicViewer.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ComicViewer"
+    RequestedTheme="Light">
+
+<Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--
+                    Styles that define common aspects of the platform look and feel
+                    Required by Visual Studio project and item templates
+                 -->
+                <ResourceDictionary Source="Control/StandardStyles.xaml" />
+                <ResourceDictionary Source="Control/ContiniousView.xaml" />
+                <ResourceDictionary Source="Control/BookFlipView.xaml" />
+                <ResourceDictionary Source="Control/PageFlipView.xaml" />
+                <ResourceDictionary Source="Control/AppBar.xaml" />
+                <ResourceDictionary Source="Control/CommandBar.xaml" />
+                <ResourceDictionary Source="Control/TitleBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
