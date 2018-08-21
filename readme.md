@@ -11,6 +11,12 @@ It can open pdf file and can read cbr, cbz, cb7, pdf files.
 ## How to Install
 Use Windows 10 side by side install features, this app is developed for personal consumption so please forgive me for any mistakes.
 
+How to side load uwp app
+
+* [SideLoad](https://docs.microsoft.com/en-us/windows/application-management/sideload-apps-in-windows-10)
+* [Enable SideLoad](https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development)
+* [Developer / Side Load](https://www.howtogeek.com/292914/what-is-developer-mode-in-windows-10/)
+
 Unzip downloaded zip file extract to some folder of your choice.
 
 Install “ComicViewer_1.0.*.0_x86_x64_arm.cer” by doubling clicking the file and clicking the “Install Certificate” button.
