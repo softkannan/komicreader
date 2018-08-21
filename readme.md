@@ -16,17 +16,17 @@ Unzip downloaded zip file extract to some folder of your choice.
 Install “ComicViewer_1.0.*.0_x86_x64_arm.cer” by doubling clicking the file and clicking the “Install Certificate” button.
 
 	Select Store Location “Local Machine”.
-		![doc1](https://github.com/softkannan/komicreader/raw/master/doc/doc1.png)
+		![doc1](https://github.com/softkannan/komicreader/blob/master/doc/doc1.png)
 	Select “Place all certificates in the following store” open then click “browse” button.
     	On the shown dialog select “Trusted Root Certification Authorities”
-		![doc2](https://github.com/softkannan/komicreader/raw/master/doc/doc2.png)
+		![doc2](https://github.com/softkannan/komicreader/blob/master/doc/doc2.png)
 	After above step something like below you see on screen, click “Next” and click “Finish”
-		![doc3](https://github.com/softkannan/komicreader/raw/master/doc/doc3.png)
+		![doc3](https://github.com/softkannan/komicreader/blob/master/doc/doc3.png)
         
 Once certificate is installed on the system double click “ComicViewer_1.0.*.0_x86_x64_arm.appxbundle” file and follow the onscreen instructions to install the application on your system.
 
 ## Features:
 
-	![readme1](https://github.com/softkannan/komicreader/raw/master/doc/readme1.png)
+	![readme1](https://github.com/softkannan/komicreader/blob/master/doc/readme1.png)
     
-    ![readme2](https://github.com/softkannan/komicreader/raw/master/doc/readme2.png)
+    ![readme2](https://github.com/softkannan/komicreader/blob/master/doc/readme2.png)
