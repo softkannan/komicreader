@@ -591,6 +591,11 @@ namespace ComicViewer
             }
         }
 
+        private void ContinuousView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void continuousView_CleanUpVirtualizedItemEvent(object sender, CleanUpVirtualizedItemEventArgs e)
         {
             return;

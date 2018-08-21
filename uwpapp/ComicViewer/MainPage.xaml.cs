@@ -102,16 +102,15 @@ namespace ComicViewer
             this.Loaded += MainPage_Loaded;
             this.Unloaded += MainPage_Unloaded;
             this.SizeChanged += MainPage_SizeChanged;
-
+            
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.SizeChanged += CoreWindow_SizeChanged;
 
             continuousView.LayoutUpdated += continuousView_LayoutUpdated;
+            continuousView.Loaded += ContinuousView_Loaded;
 
             this.DataContext = this;
         }
-
-        
 
         private void MainPage_Unloaded(object sender, RoutedEventArgs e)
         {

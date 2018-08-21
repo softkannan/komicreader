@@ -84,6 +84,8 @@ namespace ComicViewer.Control
                     await sessionData.CopyToAsync(fileStream);
                     await fileStream.FlushAsync();
                 }
+
+                ComicInfo.Inst.SaveSettings();
             }
             catch (Exception e)
             {

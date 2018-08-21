@@ -48,6 +48,8 @@ obj/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#uwp app folders
 AppPackages/
 BundleArtifacts/
 packages/

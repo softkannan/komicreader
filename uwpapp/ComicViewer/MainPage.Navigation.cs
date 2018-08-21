@@ -294,15 +294,19 @@ namespace ComicViewer
                                 {
                                     BringupContinuousViewUpdateUI();
 
-                                    continousViewJumpToPage = CurrentSource.First((item) => item.PageNo == ComicInfo.Inst.CurrentPage);
-
                                     continuousView.ItemsSource = new ComicImageSimpleListSource(CurrentSource);
+
+                                    continuousView.SelectedItem = continousViewJumpToPage;
+                                    //continuousView.SelectedIndex = (int) ComicInfo.Inst.CurrentPage;
                                     //continuousView.ItemsSource = new ComicImageRandomSource(CurrentSource);
 
                                     bttnBack.IsEnabled = false;
                                     bttnNext.IsEnabled = false;
                                     continuousView.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
+                                    //var local = continousViewJumpToPage;
+                                    continuousView.UpdateLayout();
+                                    continousViewJumpToPage = CurrentSource.First((item) => item.PageNo == ComicInfo.Inst.CurrentPage);
                                     continuousView.UpdateLayout();
                                 }
                                 break;
