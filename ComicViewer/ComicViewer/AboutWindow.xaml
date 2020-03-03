@@ -1,0 +1,10 @@
+﻿<Window x:Class="ComicViewer.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About" Height="176" Width="337" WindowStyle="ToolWindow" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid>
+        <Button Content="Ok" Height="27" HorizontalAlignment="Left" Margin="240,100,0,0" Name="bttnOk" VerticalAlignment="Top" Width="63" Click="bttnOk_Click" />
+        <Label Content="Developed By" Height="26" HorizontalAlignment="Left" Margin="18,15,0,0" Name="label1" VerticalAlignment="Top" Width="154" />
+        <Label Content="Kannan K" Height="26" HorizontalAlignment="Left" Margin="114,55,0,0" Name="label2" VerticalAlignment="Top" Width="97" />
+    </Grid>
+</Window>
