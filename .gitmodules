@@ -1,0 +1,3 @@
+[submodule "uwpapp/mupdfuwplib"]
+	path = uwpapp/mupdfuwplib
+	url = https://github.com/softkannan/mupdf-winrt
