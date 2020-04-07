@@ -25,7 +25,7 @@ namespace ComicViewer
 
         public uint CurrentPage { get => ComicInfo.Inst.CurrentPage; }
 
-        public RotatePage Rotation { get => ComicInfo.Inst.Rotation; }
+        public RotatePage PageRotation { get => ComicInfo.Inst.Rotation; }
 
         public PanelMode PanelMode { get => ComicInfo.Inst.PanelMode; }
 
