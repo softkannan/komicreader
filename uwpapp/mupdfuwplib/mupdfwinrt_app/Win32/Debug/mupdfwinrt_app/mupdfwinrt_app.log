@@ -1,0 +1,18 @@
+﻿  App.xaml.cpp
+  PrintPage.cpp
+  DocumentPage.cpp
+  MainPage.xaml.cpp
+  RectList.cpp
+  XamlTypeInfo.Impl.g.cpp
+G:\github\komicreader\uwpapp\mupdfuwplib\mupdfwinrt_app\PrintPage.cpp : fatal error C1192: #using failed on 'G:\github\komicreader\uwpapp\mupdfuwplib\Win32\Debug\mupdfwinrt.winmd'
+          'The system cannot find the file specified.'
+G:\github\komicreader\uwpapp\mupdfuwplib\mupdfwinrt_app\DocumentPage.cpp : fatal error C1192: #using failed on 'G:\github\komicreader\uwpapp\mupdfuwplib\Win32\Debug\mupdfwinrt.winmd'
+          'The system cannot find the file specified.'
+G:\github\komicreader\uwpapp\mupdfuwplib\mupdfwinrt_app\Generated Files\XamlTypeInfo.Impl.g.cpp : fatal error C1192: #using failed on 'G:\github\komicreader\uwpapp\mupdfuwplib\Win32\Debug\mupdfwinrt.winmd'
+          'The system cannot find the file specified.'
+G:\github\komicreader\uwpapp\mupdfuwplib\mupdfwinrt_app\MainPage.xaml.cpp : fatal error C1192: #using failed on 'G:\github\komicreader\uwpapp\mupdfuwplib\Win32\Debug\mupdfwinrt.winmd'
+          'The system cannot find the file specified.'
+G:\github\komicreader\uwpapp\mupdfuwplib\mupdfwinrt_app\App.xaml.cpp : fatal error C1192: #using failed on 'G:\github\komicreader\uwpapp\mupdfuwplib\Win32\Debug\mupdfwinrt.winmd'
+          'The system cannot find the file specified.'
+G:\github\komicreader\uwpapp\mupdfuwplib\mupdfwinrt_app\RectList.cpp : fatal error C1192: #using failed on 'G:\github\komicreader\uwpapp\mupdfuwplib\Win32\Debug\mupdfwinrt.winmd'
+          'The system cannot find the file specified.'
