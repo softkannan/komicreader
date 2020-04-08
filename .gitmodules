@@ -1,3 +1,0 @@
-[submodule "uwpapp/mupdfuwplib/libmupdf"]
-	path = uwpapp/mupdfuwplib/libmupdf
-	url = https://github.com/softkannan/mupdf

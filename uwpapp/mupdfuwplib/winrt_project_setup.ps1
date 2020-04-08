@@ -198,7 +198,7 @@ $ouput = @() #empty array
 $lf = "`r`n"
 foreach ($line in $c)
 {
-# Determine which build we are in and make sure we are in the compile options
+    # Determine which build we are in and make sure we are in the compile options
     $test_compile_in = select-string -pattern '<ClCompile>' -InputObject $line
     $test_compile_out = select-string -pattern '</ClCompile>' -InputObject $line
     $test_release = select-string -pattern 'Release' -InputObject $line
