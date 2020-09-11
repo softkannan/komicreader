@@ -14,11 +14,14 @@ namespace mupdf_cpp
 	/// </summary>
 	ref class App sealed
 	{
-	public:
+	protected:
+		virtual void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs^ e) override;
+
+	internal:
 		App();
-		virtual void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs^ args) override;
-	virtual void App::OnFileActivated(Windows::ApplicationModel::Activation::FileActivatedEventArgs^ args) override;
+
 	private:
 		void OnSuspending(Platform::Object^ sender, Windows::ApplicationModel::SuspendingEventArgs^ e);
+		void OnNavigationFailed(Platform::Object ^sender, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs ^e);
 	};
 }

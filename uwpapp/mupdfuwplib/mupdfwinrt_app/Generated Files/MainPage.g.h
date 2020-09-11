@@ -47,14 +47,6 @@ namespace mupdf_cpp
     private:
         bool _contentLoaded;
     
-        class MainPage_obj30_Bindings;
-        class MainPage_obj34_Bindings;
-        class MainPage_obj35_Bindings;
-        class MainPage_obj33_Bindings;
-        class MainPage_obj37_Bindings;
-        class MainPage_obj38_Bindings;
-        class MainPage_obj36_Bindings;
-        class MainPage_obj1_Bindings;
     
         private: ::Windows::UI::Xaml::Controls::Slider^ xaml_PageSlider;
         private: ::Windows::UI::Xaml::Controls::Button^ Find_File;

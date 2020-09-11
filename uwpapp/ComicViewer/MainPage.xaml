@@ -158,8 +158,8 @@
                           VerticalScrollMode="{Binding Path=VerticalScrollMode}" ZoomMode="{Binding Path=ZoomMode}"
                           Visibility="Collapsed">
                 <StackPanel  Background="{x:Null}" x:Name="twoPageStackPanel" HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="{Binding Path=FlowDirection}">
-                    <Image x:Name="page1" Opacity="{Binding Path=Opacity}" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
-                    <Image x:Name="page2" Opacity="{Binding Path=Opacity}" Margin="0" HorizontalAlignment="Center" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
+                    <Image x:Name="page1" Opacity="{Binding Path=Opacity}" Margin="0" HorizontalAlignment="Right" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
+                    <Image x:Name="page2" Opacity="{Binding Path=Opacity}" Margin="0" HorizontalAlignment="Left" Width="{Binding Path=Width}" Height="{Binding Path=Height}" Stretch="{Binding Path=Stretch}" Source="{Binding Path=ImageSrc}" />
                 </StackPanel>
             </ScrollViewer>
             <!--single page view with flip style page turn control layout-->

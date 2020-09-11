@@ -30,89 +30,66 @@ using namespace Windows::UI::Xaml::Navigation;
 /// </summary>
 App::App()
 {
-	InitializeComponent();
-	Suspending += ref new SuspendingEventHandler(this, &App::OnSuspending);
+    InitializeComponent();
+    Suspending += ref new SuspendingEventHandler(this, &App::OnSuspending);
 }
 
 /// <summary>
 /// Invoked when the application is launched normally by the end user.  Other entry points
-/// will be used when the application is launched to open a specific file, to display
-/// search results, and so forth.
+/// will be used such as when the application is launched to open a specific file.
 /// </summary>
-/// <param name="args">Details about the launch request and process.</param>
-void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs^ args)
+/// <param name="e">Details about the launch request and process.</param>
+void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs^ e)
 {
-	auto rootFrame = dynamic_cast<Frame^>(Window::Current->Content);
+    auto rootFrame = dynamic_cast<Frame^>(Window::Current->Content);
 
-	// Do not repeat app initialization when the Window already has content,
-	// just ensure that the window is active
-	if (rootFrame == nullptr)
-	{
-		// Create a Frame to act as the navigation context and associate it with
-		// a SuspensionManager key
-		rootFrame = ref new Frame();
+    // Do not repeat app initialization when the Window already has content,
+    // just ensure that the window is active
+    if (rootFrame == nullptr)
+    {
+        // Create a Frame to act as the navigation context and associate it with
+        // a SuspensionManager key
+        rootFrame = ref new Frame();
 
-		if (args->PreviousExecutionState == ApplicationExecutionState::Terminated)
-		{
-			// TODO: Restore the saved session state only when appropriate, scheduling the
-			// final launch steps after the restore is complete
+        rootFrame->NavigationFailed += ref new Windows::UI::Xaml::Navigation::NavigationFailedEventHandler(this, &App::OnNavigationFailed);
 
-		}
+        if (e->PreviousExecutionState == ApplicationExecutionState::Terminated)
+        {
+            // TODO: Restore the saved session state only when appropriate, scheduling the
+            // final launch steps after the restore is complete
 
-		if (rootFrame->Content == nullptr)
-		{
-			// When the navigation stack isn't restored navigate to the first page,
-			// configuring the new page by passing required information as a navigation
-			// parameter
-			if (!rootFrame->Navigate(TypeName(MainPage::typeid), args->Arguments))
-			{
-				throw ref new FailureException("Failed to create initial page");
-			}
-		}
-		// Place the frame in the current Window
-		Window::Current->Content = rootFrame;
-		auto rootPage = safe_cast<MainPage^>(rootFrame->Content);
-		rootPage->FileEvent = nullptr;
-		rootPage->ProtocolEvent = nullptr;
+        }
 
-		// Ensure the current window is active
-		Window::Current->Activate();
-	}
-	else
-	{
-		if (rootFrame->Content == nullptr)
-		{
-			// When the navigation stack isn't restored navigate to the first page,
-			// configuring the new page by passing required information as a navigation
-			// parameter
-			if (!rootFrame->Navigate(TypeName(MainPage::typeid), args->Arguments))
-			{
-				throw ref new FailureException("Failed to create initial page");
-			}
-		}
-		// Ensure the current window is active
-		Window::Current->Activate();
-	}
-}
-
-/* Handle case where we do a association file opening and the app is already
-   running */
-void App::OnFileActivated(Windows::ApplicationModel::Activation::FileActivatedEventArgs^ args)
-{
-	auto rootFrame = dynamic_cast<Frame^>(Window::Current->Content);
-
-	if (rootFrame->Content == nullptr)
-	{
-		if (!rootFrame->Navigate(TypeName(MainPage::typeid)))
-		{
-			throw ref new FailureException("Failed to create initial page");
-		}
-	}
-	auto p = dynamic_cast<MainPage^>(rootFrame->Content);
-	p->FileEvent = args;
-	p->ProtocolEvent = nullptr;
-	p->FromFile();
-	Window::Current->Activate();
+        if (e->PrelaunchActivated == false)
+        {
+            if (rootFrame->Content == nullptr)
+            {
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+            }
+            // Place the frame in the current Window
+            Window::Current->Content = rootFrame;
+            // Ensure the current window is active
+            Window::Current->Activate();
+        }
+    }
+    else
+    {
+        if (e->PrelaunchActivated == false)
+        {
+            if (rootFrame->Content == nullptr)
+            {
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                rootFrame->Navigate(TypeName(MainPage::typeid), e->Arguments);
+            }
+            // Ensure the current window is active
+            Window::Current->Activate();
+        }
+    }
 }
 
 /// <summary>
@@ -124,8 +101,18 @@ void App::OnFileActivated(Windows::ApplicationModel::Activation::FileActivatedEv
 /// <param name="e">Details about the suspend request.</param>
 void App::OnSuspending(Object^ sender, SuspendingEventArgs^ e)
 {
-	(void) sender;	// Unused parameter
-	(void) e;	// Unused parameter
+    (void) sender;  // Unused parameter
+    (void) e;   // Unused parameter
 
-	//TODO: Save application state and stop any background activity
+    //TODO: Save application state and stop any background activity
+}
+
+/// <summary>
+/// Invoked when Navigation to a certain page fails
+/// </summary>
+/// <param name="sender">The Frame which failed navigation</param>
+/// <param name="e">Details about the navigation failure</param>
+void App::OnNavigationFailed(Platform::Object ^sender, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs ^e)
+{
+    throw ref new FailureException("Failed to load Page " + e->SourcePageType.Name);
 }

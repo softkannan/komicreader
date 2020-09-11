@@ -198,7 +198,7 @@ void muctx::SetAA(int level)
 }
 
 /* Set up the context, mutex and cookie */
-status_t muctx::InitializeContext()
+status_t muctx::ContextInit()
 {
 	int i;
 
@@ -865,7 +865,7 @@ status_t muctx::RenderPageMT(void *dlist, void *a_dlist, int page_height,
 {
 	fz_device *dev = NULL;
 	fz_pixmap *pix = NULL;
-	fz_matrix ctm, *pctm = &ctm;
+	fz_matrix ctm;
 	fz_context *ctx_clone = NULL;
 	fz_display_list *display_list = (fz_display_list*) dlist;
 	fz_display_list *annot_displaylist = (fz_display_list*) a_dlist;
@@ -879,8 +879,7 @@ status_t muctx::RenderPageMT(void *dlist, void *a_dlist, int page_height,
 
 	fz_try(ctx_clone)
 	{
-		//TODO: scalling issues
-		//pctm = fz_scale(pctm, scale, scale);
+		ctm = fz_scale(scale, scale);
 		/* Flip on Y. */
 		if (flipy)
 		{
@@ -924,7 +923,7 @@ status_t muctx::RenderPage(int page_num, unsigned char *bmp_data, int bmp_width,
 	fz_device *dev = NULL;
 	fz_pixmap *pix = NULL;
 	fz_page *page = NULL;
-	fz_matrix ctm, *pctm = &ctm;
+	fz_matrix ctm;
 	point_t page_size;
 
 	fz_var(dev);
@@ -935,8 +934,7 @@ status_t muctx::RenderPage(int page_num, unsigned char *bmp_data, int bmp_width,
 	{
 		page = LoadPage(page_num);
 		page_size = MeasurePage(page);
-		//TODO:scale issue
-		//pctm = fz_scale(pctm, scale, scale);
+		ctm = fz_scale(scale, scale);
 		/* Flip on Y */
 		if (flipy)
 		{

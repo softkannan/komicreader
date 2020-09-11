@@ -14,11 +14,122 @@ extern "C" {
 
 
 #define MAX_SEARCH 500
+/* 25% .. 1600% */
+#define MINRES 18
+#define MAXRES 1152
 
 enum { SVG_OUT, PNM_OUT, PCL_OUT, PWG_OUT };
 enum { HTML = 0, XML, TEXT };
 enum { CONTENT_LIST = 0, CONTENT_EXPORT, CONTENT_VAL };
 enum { SIG_OBTAINED = 0, SIG_NOTSAVED, SIG_NOTSIGNED, SIG_NOTSIGWIDGET, SIG_GOTSIZES, SIG_ERROR };
+enum { ARROW, HAND, WAIT, CARET };
+enum { DISCARD, SAVE, CANCEL };
+enum { QUERY_NO, QUERY_YES };
+
+struct pdfapp_s
+{
+	/* current document params */
+	fz_document* doc;
+	char* docpath;
+	char* doctitle;
+	fz_outline* outline;
+	int outline_deferred;
+
+	float layout_w;
+	float layout_h;
+	float layout_em;
+	char* layout_css;
+	int layout_use_doc_css;
+
+	int pagecount;
+
+	/* current view params */
+	float default_resolution;
+	float resolution;
+	int rotate;
+	fz_pixmap* image;
+	int imgw, imgh;
+	int grayscale;
+	fz_colorspace* colorspace;
+	int invert;
+	int tint, tint_white;
+	int useicc;
+	int useseparations;
+	int aalevel;
+
+	/* presentation mode */
+	int presentation_mode;
+	int transitions_enabled;
+	fz_pixmap* old_image;
+	fz_pixmap* new_image;
+	clock_t start_time;
+	int in_transit;
+	float duration;
+	fz_transition transition;
+
+	/* current page params */
+	int pageno;
+	fz_page* page;
+	fz_rect page_bbox;
+	fz_display_list* page_list;
+	fz_display_list* annotations_list;
+	fz_stext_page* page_text;
+	fz_link* page_links;
+	int errored;
+	int incomplete;
+
+	/* separations */
+	fz_separations* seps;
+
+	/* snapback history */
+	int hist[256];
+	int histlen;
+	int marks[10];
+
+	/* window system sizes */
+	int winw, winh;
+	int scrw, scrh;
+	int shrinkwrap;
+	int fullscreen;
+
+	/* event handling state */
+	char number[256];
+	int numberlen;
+
+	int ispanning;
+	int panx, pany;
+
+	int iscopying;
+	int selx, sely;
+	/* TODO - While sely keeps track of the relative change in
+	 * cursor position between two ticks/events, beyondy shall keep
+	 * track of the relative change in cursor position from the
+	 * point where the user hits a scrolling limit. This is ugly.
+	 * Used in pdfapp.c:pdfapp_onmouse.
+	 */
+	int beyondy;
+	fz_rect selr;
+
+	int nowaitcursor;
+
+	/* search state */
+	int issearching;
+	int searchdir;
+	char search[512];
+	int searchpage;
+	fz_quad hit_bbox[512];
+	int hit_count;
+
+	/* client context storage */
+	void* userdata;
+
+	fz_context* ctx;
+#ifdef HAVE_CURL
+	fz_stream* stream;
+#endif
+};
+
+typedef struct pdfapp_s pdfapp_t;
 
 typedef struct point_s
 {
@@ -109,6 +220,9 @@ typedef struct win_stream_struct_s
 class muctx
 {
 private:
+
+	pdfapp_t* app;
+
 	CRITICAL_SECTION mu_criticalsec[FZ_LOCK_MAX];
 	win_stream_struct win_stream;
 	fz_locks_context mu_locks;
@@ -128,7 +242,9 @@ public:
 	~muctx(void);
 	void CleanUp(void);
 	int GetPageCount();
-	status_t InitializeContext();
+
+	status_t ContextInit();
+
 	status_t RenderPage(int page_num, unsigned char *bmp_data, int bmp_width,
 						int bmp_height, float scale, bool flipy);
 	status_t RenderPageMT(void *dlist, void *a_dlist, int page_height,

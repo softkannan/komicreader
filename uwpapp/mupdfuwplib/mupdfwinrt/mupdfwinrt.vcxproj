@@ -36,8 +36,8 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.18362.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,7 +127,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TOFU;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
@@ -139,14 +139,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libmupdf_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libthirdparty_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/Release/libfonts_winrt.lib</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libmupdf.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libresources.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libthirdparty.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TOFU;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
@@ -158,14 +158,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libmupdf_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libthirdparty_winrt.lib</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libmupdf.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libresources.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libthirdparty.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TOFU;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
@@ -177,14 +177,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libmupdf_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libthirdparty_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/Release/libfonts_winrt.lib</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libmupdf.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libresources.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libthirdparty.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TOFU;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
@@ -196,14 +196,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libmupdf_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libthirdparty_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/Release/libfonts_winrt.lib</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libmupdf.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libresources.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libthirdparty.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TOFU;_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
@@ -215,14 +215,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/winrt/$(Platform)/Release/libfonts_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libmupdf_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libthirdparty_winrt.lib</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libmupdf.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libresources.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libthirdparty.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TOFU;_WINRT_DLL;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
@@ -231,10 +231,11 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>../libmupdf/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libmupdf_winrt.lib;../libmupdf/platform/win32/winrt/$(Platform)/$(Configuration)/libthirdparty_winrt.lib</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;WindowsApp.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libmupdf.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libresources.lib;../libmupdf/platform/win32/$(Platform)/$(Configuration)/libthirdparty.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>

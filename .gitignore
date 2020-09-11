@@ -54,3 +54,8 @@ AppPackages/
 BundleArtifacts/
 packages/
 
+uwpapp/mupdfuwplib/mupdfwinrt_app/Win32/
+uwpapp/mupdfuwplib/mupdfwinrt_app/x64/
+uwpapp/mupdfuwplib/mupdfwinrt_app/Generated Files/
+uwpapp/mupdfuwplib/Win32/
+uwpapp/mupdfuwplib/x64/

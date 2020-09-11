@@ -19,7 +19,7 @@ using namespace Windows::Storage::Streams;
 
 mudocument::mudocument()
 {
-	this->mu_object.InitializeContext();
+	this->mu_object.ContextInit();
 	this->links = nullptr;
 }
 
