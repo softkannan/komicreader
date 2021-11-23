@@ -222,6 +222,7 @@ namespace ComicViewer.ComicViewModel
 
             switch (PanelMode)
             {
+                case PanelMode.TitleDoublePage:
                 case PanelMode.DoublePage:
                     switch (Zoom)
                     {

@@ -73,7 +73,8 @@ namespace ComicViewer.ComicViewModel
     {
         SinglePage,
         ContniousPage,
-        DoublePage
+        DoublePage,
+        TitleDoublePage
     }
 
     public enum RotatePage

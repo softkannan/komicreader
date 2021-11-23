@@ -60,44 +60,11 @@ namespace ComicViewer
 
             //effects setting changed event handler.
             //force reload the image data from source and apply the effects
-            EffectSettings.EffectChanged = () =>
-            {
-                try
-                {
-                    Busy();
-                    ShowPage();
-                }
-                catch (Exception ex)
-                {
-                    ShowError("Effect Change", ex);
-                    return;
-                }
-                finally
-                {
-                    NotBusy();
-                }
-            };
+            EffectSettings.EffectChanged = OnEffectsChanged;
 
             //setting changed event handler.
             //force reload the image data from source and apply the effects
-
-            AppSettings.AppSettingsChanged = () =>
-            {
-                try
-                {
-                    Busy();
-                    ShowPage();
-                }
-                catch (Exception ex)
-                {
-                    ShowError("Settings Change", ex);
-                    return;
-                }
-                finally
-                {
-                    NotBusy();
-                }
-            };
+            AppSettings.AppSettingsChanged = OnAppSettingsChanged;
 
             this.Loaded += MainPage_Loaded;
             this.Unloaded += MainPage_Unloaded;

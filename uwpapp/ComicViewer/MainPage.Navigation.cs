@@ -74,7 +74,7 @@ namespace ComicViewer
             {
                 if (navSync.Wait(NAVIGATION_OPERATION_WAIT_TIME))
                 {
-                    if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage)
+                    if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage)
                     {
                         ComicInfo.Inst.CurrentPage += 2;
                     }
@@ -98,7 +98,7 @@ namespace ComicViewer
             {
                 if (navSync.Wait(NAVIGATION_OPERATION_WAIT_TIME))
                 {
-                    if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage)
+                    if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage)
                     {
                         ComicInfo.Inst.CurrentPage -= 2;
                     }
@@ -174,7 +174,7 @@ namespace ComicViewer
                                     bttnNext.IsEnabled = true;
                                 }
                                 break;
-
+                            case PanelMode.TitleDoublePage:
                             case PanelMode.DoublePage:
                                 {
                                     //check flip view enabled
@@ -359,6 +359,7 @@ namespace ComicViewer
         {
             switch (ComicInfo.Inst.PanelMode)
             {
+                case PanelMode.TitleDoublePage:
                 case PanelMode.DoublePage:
                     {
                         switch (ComicInfo.Inst.Zoom)
@@ -493,13 +494,16 @@ namespace ComicViewer
             bttnSinglePage.IsChecked = false;
             bttnTwoPage.IsChecked = false;
             bttnContinuousPage.IsChecked = false;
+            bttnTitleTwoPage.IsChecked = false;
 
             switch (ComicInfo.Inst.PanelMode)
             {
                 case PanelMode.SinglePage:
                     bttnSinglePage.IsChecked = true;
                     break;
-
+                case PanelMode.TitleDoublePage:
+                    bttnTitleTwoPage.IsChecked = true;
+                    break;
                 case PanelMode.DoublePage:
                     bttnTwoPage.IsChecked = true;
                     break;
@@ -528,7 +532,7 @@ namespace ComicViewer
                 }
                 pageFlipView.UpdateLayout();
             }
-            else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage && AppSettings.FlipView)
+            else if ((ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage) && AppSettings.FlipView)
             {
                 var frame = CurrentSource.FindIndex((item) =>
                 {
@@ -648,7 +652,7 @@ namespace ComicViewer
                     ComicInfo.Inst.CurrentPage = tempPage.PageNo;
                 }
             }
-            else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage && AppSettings.FlipView)
+            else if ((ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage) && AppSettings.FlipView)
             {
                 var tempPage = bookFlipView.SelectedItem as ComicImageViewModel;
 
@@ -666,7 +670,7 @@ namespace ComicViewer
                     ComicInfo.Inst.CurrentPage = tempPage.PageNo;
                 }
             }
-            else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage)
+            else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage)
             {
                 var tempPage = bookView.DataContext as ComicImageViewModel;
 

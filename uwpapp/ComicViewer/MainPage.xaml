@@ -22,14 +22,27 @@
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=LastPage}" />
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <AppBarToggleButton x:Name="bttnSinglePage" Checked="PanelMode_Checked" Icon="Page2" Label="Single" />
+                    <AppBarToggleButton x:Name="bttnSinglePage" Checked="PanelMode_Checked" Icon="Page" Label="Single" />
                     <AppBarToggleButton x:Name="bttnContinuousPage" Checked="PanelMode_Checked" Icon="Copy" Label="Continuos" />
                     <AppBarToggleButton x:Name="bttnTwoPage" Checked="PanelMode_Checked" Icon="TwoPage" Label="Book" />
+                    <AppBarToggleButton x:Name="bttnTitleTwoPage" Checked="PanelMode_Checked" Label="Title Book">
+                        <AppBarToggleButton.Icon>
+                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF57D;" />
+                        </AppBarToggleButton.Icon>
+                    </AppBarToggleButton>
                     <AppBarSeparator/>
                     <AppBarButton x:Name="bttnGoto" Click="bttnGoto_Click" Icon="Go" Label="Go" />
                     <AppBarSeparator/>
-                    <AppBarButton x:Name="bttnBack" Click="bttnBack_Click" Icon="Back" Label="Back" />
-                    <AppBarButton x:Name="bttnNext" Click="bttnNext_Click" Icon="Forward" Label="Next" />
+                    <AppBarButton x:Name="bttnBack" Click="bttnBack_Click" Label="Back">
+                        <AppBarButton.Icon>
+                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE760;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="bttnNext" Click="bttnNext_Click" Label="Next">
+                        <AppBarButton.Icon>
+                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE761;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                 </StackPanel>
             </Grid>
         </control:AppBarEx>
@@ -54,7 +67,7 @@
                     <AppBarSeparator/>
                     <AppBarToggleButton x:Name="bttnFitWidth" Label="Fit Width" Checked="Zoom_Checked" HorizontalAlignment="Center">
                         <AppBarToggleButton.Icon>
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE0A6;&#xE0AE;" />
+                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE72B;&#xE72A;" />
                             <!--<FontIcon FontFamily="Segoe UI Emoji"  Glyph="&#x2194;" />-->
                             <!--<FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF0D5;&#xF0D6;" />-->
                         </AppBarToggleButton.Icon>

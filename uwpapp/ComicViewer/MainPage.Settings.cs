@@ -34,6 +34,41 @@ namespace ComicViewer
         private IDocument _documentReader = null;
 
         public ComicImageViewModelList Pages { get; set; }
+
+        private void OnEffectsChanged()
+        {
+            try
+            {
+                Busy();
+                ShowPage();
+            }
+            catch (Exception ex)
+            {
+                ShowError("Effect Change", ex);
+                return;
+            }
+            finally
+            {
+                NotBusy();
+            }
+        }
+        private void OnAppSettingsChanged()
+        {
+            try
+            {
+                Busy();
+                ShowPage();
+            }
+            catch (Exception ex)
+            {
+                ShowError("Settings Change", ex);
+                return;
+            }
+            finally
+            {
+                NotBusy();
+            }
+        }
     }
 
  

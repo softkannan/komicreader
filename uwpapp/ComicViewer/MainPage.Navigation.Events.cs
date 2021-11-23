@@ -365,6 +365,7 @@ namespace ComicViewer
 
             if (toggleButton != null)
             {
+                var performUpdate = false;
                 try
                 {
                     if (navSync.Wait(NAVIGATION_OPERATION_WAIT_TIME))
@@ -387,7 +388,11 @@ namespace ComicViewer
                                     UpdateZoomStatus();
                                 }
                                 break;
+                            case "bttnTitleTwoPage":
+                                ComicInfo.Inst.PanelMode = PanelMode.TitleDoublePage;
+                                break;
                         }
+                        performUpdate = true;
                     }
                 }
                 finally
@@ -395,19 +400,22 @@ namespace ComicViewer
                     navSync.Release();
                 }
 
-                try
+                if (performUpdate)
                 {
-                    Busy();
-                    //UpdatePanelModeStatus();
-                    ShowPage();
-                }
-                catch (Exception ex)
-                {
-                    ShowError("Panel Mode", ex);
-                }
-                finally
-                {
-                    NotBusy();
+                    try
+                    {
+                        Busy();
+                        //UpdatePanelModeStatus();
+                        ShowPage();
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowError("Panel Mode", ex);
+                    }
+                    finally
+                    {
+                        NotBusy();
+                    }
                 }
             }
         }
@@ -535,7 +543,7 @@ namespace ComicViewer
                         {
                             pageView.ChangeView(null, pageView.VerticalOffset + 30, null);
                         }
-                        else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage)
+                        else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage)
                         {
                             bookView.ChangeView(null, bookView.VerticalOffset + 30, null);
                         }
@@ -551,7 +559,7 @@ namespace ComicViewer
                         if (ComicInfo.Inst.PanelMode == PanelMode.SinglePage)
                         {
                         }
-                        else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage)
+                        else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage)
                         {
                         }
                     }
@@ -562,7 +570,7 @@ namespace ComicViewer
                         {
                             pageView.ChangeView(null, pageView.VerticalOffset - 30, null);
                         }
-                        else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage)
+                        else if (ComicInfo.Inst.PanelMode == PanelMode.DoublePage || ComicInfo.Inst.PanelMode == PanelMode.TitleDoublePage)
                         {
                             bookView.ChangeView(null, bookView.VerticalOffset - 30, null);
                         }
